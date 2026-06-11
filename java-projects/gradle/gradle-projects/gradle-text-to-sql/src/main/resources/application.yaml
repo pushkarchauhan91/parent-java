@@ -1,0 +1,20 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: convert-text-to-sql
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://10.0.173.75:5432/ccoqa?currentSchema=orders
+    username: ccoqarw
+    password: h87lVk3P0D!U0hX['8A-Lt;Z
+
+app:
+  api:
+    text-to-sql-url: http://localhost:${server.port}/api/text-to-sql

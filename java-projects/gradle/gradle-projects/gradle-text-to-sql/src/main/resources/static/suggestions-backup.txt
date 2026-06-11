@@ -1,0 +1,98 @@
+# Orders - General
+Show top 10 records from orders
+Return total count of orders
+Show top 10 orders by created date desc
+
+# Orders - Filters
+Show orders where ordercode starts with nqa limit 10
+Show orders where code starts with uat limit 10
+
+# Orders - Status / BaseSite / Journey / Sales Application
+Return count of orders grouped by status
+Return count of orders grouped by basesite
+Return count of orders grouped by journey
+Return count of orders grouped by salesapplication
+Show top 10 basesites by order count
+Show top 10 statuses by order count
+
+# Orders - Date / Trend
+Which day had the most orders?
+Show orders created today
+Show orders created in last 7 days
+Show orders modified in last 7 days
+Return count of orders created by day for last 30 days
+
+# Order Delivery - General
+Return total count of orderdelivery
+How many have orderdeliveryentries have deliverymode as 'DEALERPICKUP'?
+How many have orderdeliveryentries have deliverymode as 'SHIPPING'?
+Show top 10 orderdelivery records by created date desc
+
+# Order Delivery - Filters
+Show orderdelivery records where ordercode starts with nqa limit 10
+Return count of orderdelivery where ordercode starts with uat
+Return count of records from orderdelivery where ordercode starts with nqa limit 10
+
+# Order Delivery - Grouping
+Return count of orderdelivery grouped by deliverymode
+Return count of orderdelivery grouped by shippingmethod
+Show order count by day from orderdelivery grouped by created date order by count desc limit 10
+
+# Order Delivery Entries
+Return total count of orderdeliveryentries
+Return count of orderdeliveryentries grouped by deliverymode
+Return count of orderdeliveryentries grouped by shippingmethod
+Show latest 10 orderdeliveryentries records
+Show orderdeliveryentries for ordercode nqa-30396477
+
+# Order Delivery + Delivery Entries Join
+Return count of records from orderdelivery and orderdeliveryentries for nqa-30396477
+Return records from orderdelivery and orderdeliveryentries for nqa-30396477
+
+# Order Entries - General
+Return total count of orderentries
+Show latest 20 records from orderentries
+
+# Order Entries - Grouping
+Return count of orderentries grouped by producttype
+Return count of orderentries grouped by entrystatus
+Return count of orderentries grouped by dealercode
+Show top 10 dealercodes by orderentries count
+Show top 10 productcodes by orderentries count
+
+# Order Entries - Filters
+Show orderentries where producttype is ECOMM_ACCESSORY limit 10
+Show orderentries where ordercode is nqa-30396477
+
+# Vehicle Entry Features
+Return count of vehicleentryfeatures
+Show vehicleentryfeatures where ordercode is nqa-30396477
+Return count of vehicleentryfeatures grouped by state
+Show top 10 vehicle states by count
+Show vehicleentryfeatures where vin is not null limit 10
+
+# Error Tables - Orders Error
+Return count of orderserror grouped by eventtype
+Return count of orderserror grouped by step
+Show latest 10 orderserror records
+Show orderserror records where ordercode starts with nqa limit 10
+
+# Error Tables - Consignments Error
+Return count of consignmentserror grouped by eventtype
+Show latest 10 consignmentserror records
+
+# Order Offers
+Return count of orderoffers
+Show orderoffers for ordercode nqa-30396477
+
+# Order Taxes Fees
+Return count of ordertaxesfees
+Show ordertaxesfees for ordercode nqa-30396477
+
+# Order Users
+Return count of orderusers grouped by usertype
+Show orderusers for ordercode nqa-30396477
+
+# Schema Metadata
+List all tables in orders schema
+Return count of tables in orders schema

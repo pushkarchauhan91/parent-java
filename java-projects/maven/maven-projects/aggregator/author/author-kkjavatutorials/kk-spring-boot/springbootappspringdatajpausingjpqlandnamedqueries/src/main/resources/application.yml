@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: postgres
+    tomcat:
+      max-active: 50
+      max-idle: 20
+      max-wait: 20000
+      min-idle: 15
+    url: jdbc:postgresql://localhost:5432/springbootdb
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true

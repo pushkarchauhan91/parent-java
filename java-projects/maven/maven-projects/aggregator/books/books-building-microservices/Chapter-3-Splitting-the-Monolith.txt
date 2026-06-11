@@ -1,0 +1,19 @@
+------------------------------------------------------------------------------------------------------------------------
+Splitting the Monolith
+------------------------------------------------------------------------------------------------------------------------
+Rational Decision to switch to microservices
+(Logical Decision based on reasoning)
+
+Useful Decomposition Strategies:
+1. Strangler Fig Pattern
+- Gradually replace parts of the monolith with microservices
+2. Parallel Run Pattern (Run both monolith and microservices simultaneously)
+3. Feature Toggle Pattern (Enable/Disable features in monolith and microservices)
+
+Data Decomposition Concerns:
+Performance (Latency)
+Data Integrity
+Transactions
+Tooling (Database Migration Tools, Data Synchronization Tools)
+Reporting Database (External read only database for reporting purposes)
+Consistency, Complexity

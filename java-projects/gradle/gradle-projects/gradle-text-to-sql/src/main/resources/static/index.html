@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Text-to-SQL Analytics</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef6ff, #f7f7ff);
+            color: #1f2937;
+        }
+
+        body.dark {
+            background: linear-gradient(135deg, #0f172a, #111827);
+            color: #f9fafb;
+        }
+
+        .container {
+            width: 96%;
+            max-width: 1800px;
+            margin: 30px auto;
+        }
+
+        .hero {
+            padding: 35px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            box-shadow: 0 20px 45px rgba(37, 99, 235, 0.3);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        .top-actions {
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        button {
+            padding: 12px 22px;
+            margin: 6px;
+            border: none;
+            border-radius: 999px;
+            background: #2563eb;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .secondary-btn {
+            background: #374151;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1.1fr 2fr;
+            gap: 24px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 1100px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 22px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        body.dark .panel {
+            background: #1f2937;
+        }
+
+        .chat-box {
+            height: 360px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+        }
+
+        body.dark .chat-box {
+            background: #111827;
+            border-color: #374151;
+        }
+
+        .message {
+            margin-bottom: 14px;
+            display: flex;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .bubble {
+            max-width: 85%;
+            padding: 13px 16px;
+            border-radius: 18px;
+            line-height: 1.5;
+            font-size: 15px;
+        }
+
+        .bot .bubble {
+            background: #e0edff;
+            color: #1f2937;
+        }
+
+        .user .bubble {
+            background: #2563eb;
+            color: white;
+        }
+
+        body.dark .bot .bubble {
+            background: #374151;
+            color: white;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            margin-top: 16px;
+            border-radius: 16px;
+            border: 1px solid #d1d5db;
+            resize: vertical;
+            font-size: 16px;
+        }
+
+        .suggestions {
+            margin-top: 14px;
+            max-height: 260px;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        .suggestions span {
+            display: inline-block;
+            margin: 5px;
+            padding: 9px 14px;
+            background: #eef6ff;
+            color: #1d4ed8;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        body.dark .suggestions span {
+            background: #374151;
+            color: #bfdbfe;
+        }
+
+        .kpi-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+        }
+
+        .kpi-card {
+            padding: 22px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #eff6ff, #ffffff);
+            border: 1px solid #dbeafe;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+        }
+
+        body.dark .kpi-card {
+            background: #111827;
+            border-color: #374151;
+        }
+
+        .kpi-title {
+            font-size: 13px;
+            color: #6b7280;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .kpi-value {
+            margin-top: 10px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .section {
+            margin-top: 24px;
+        }
+
+        .insights-box {
+            padding: 20px;
+            border-radius: 18px;
+            background: #ecfdf5;
+            border-left: 6px solid #10b981;
+            line-height: 1.8;
+        }
+
+        body.dark .insights-box {
+            background: #064e3b;
+        }
+
+        pre {
+            background: #111827;
+            color: #22c55e;
+            padding: 18px;
+            border-radius: 16px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .sql-keyword {
+            color: #60a5fa;
+            font-weight: bold;
+        }
+
+        .chart-wrapper {
+            width: 100%;
+            padding: 20px;
+            border-radius: 20px;
+            background: white;
+            overflow-x: auto;
+            border: 1px solid #e5e7eb;
+        }
+
+        body.dark .chart-wrapper {
+            background: #111827;
+            border-color: #374151;
+        }
+
+        #ordersChart {
+            width: 100%;
+            min-width: 900px;
+            height: 420px;
+        }
+
+        .table-tools {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .table-tools input {
+            padding: 12px 16px;
+            border-radius: 999px;
+            border: 1px solid #d1d5db;
+            min-width: 280px;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            max-height: 650px;
+            overflow: auto;
+            border: 1px solid #d1d5db;
+            border-radius: 16px;
+        }
+
+        table {
+            width: max-content;
+            min-width: 100%;
+            border-collapse: collapse;
+            background: white;
+            table-layout: fixed;
+        }
+
+        body.dark table {
+            background: #111827;
+        }
+
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 12px 16px;
+            text-align: center;
+            vertical-align: middle;
+            min-width: 180px;
+            max-width: 360px;
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+
+        th {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: #2563eb;
+            color: white;
+        }
+
+        th.sortable {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        tr:nth-child(even) {
+            background: #f9fafb;
+        }
+
+        body.dark tr:nth-child(even) {
+            background: #1f2937;
+        }
+
+        .pagination, .loading, .error {
+            text-align: center;
+            margin-top: 14px;
+            font-weight: bold;
+        }
+
+        .loading {
+            color: #2563eb;
+        }
+
+        .error {
+            color: #dc2626;
+        }
+
+        .history-item {
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+        }
+
+        .history-item:hover {
+            background: #eef6ff;
+        }
+
+        body.dark .history-item:hover {
+            background: #374151;
+        }
+
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .ai-card {
+            padding: 18px;
+            border-radius: 18px;
+            background: #f8fafc;
+            border: 1px solid #dbeafe;
+            line-height: 1.6;
+        }
+
+        body.dark .ai-card {
+            background: #111827;
+            border-color: #374151;
+        }
+
+        .ai-card h4 {
+            margin-top: 0;
+            color: #2563eb;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .small-muted {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        body.dark .small-muted {
+            color: #d1d5db;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>AI Text-to-SQL Analytics</h1>
+        <p>Ask business questions, generate SQL, visualize results, and explore insights instantly.</p>
+
+        <div class="top-actions">
+            <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+            <button class="secondary-btn" onclick="clearResults()">Clear Dashboard</button>
+        </div>
+    </div>
+
+    <div class="layout">
+
+        <div class="panel">
+            <h2>AI Query Assistant</h2>
+
+            <div id="chatBox" class="chat-box">
+                <div class="message bot">
+                    <div class="bubble">
+                        Hi! Ask me questions like “Which day had most orders?” or “Show top 10 orderdelivery records”.
+                    </div>
+                </div>
+            </div>
+
+            <textarea id="questionInput">Show order count by day from orderdelivery grouped by created date order by count desc limit 10</textarea>
+
+            <div id="suggestionsContainer" class="suggestions">
+                Loading suggestions...
+            </div>
+
+            <div class="top-actions">
+                <button onclick="runQuery()">Ask AI</button>
+                <button class="secondary-btn" onclick="downloadCSV()">Download CSV</button>
+            </div>
+
+            <div id="loadingMessage" class="loading"></div>
+            <div id="errorMessage" class="error"></div>
+
+            <div class="section">
+                <h3>Recent Queries</h3>
+                <div id="historyContainer"></div>
+            </div>
+        </div>
+
+        <div class="panel">
+
+            <div class="kpi-container">
+                <div class="kpi-card">
+                    <div class="kpi-title">Returned Rows</div>
+                    <div class="kpi-value" id="kpiRows">0</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-title">Total Count</div>
+                    <div class="kpi-value" id="kpiTotal">0</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-title">Average Count</div>
+                    <div class="kpi-value" id="kpiAverage">0</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-title">Highest Value</div>
+                    <div class="kpi-value" id="kpiMax">0</div>
+                </div>
+            </div>
+
+            <div id="insightsBox" class="insights-box section">
+                Run a query to see smart insights.
+            </div>
+
+            <div class="section">
+                <h3>Generated SQL</h3>
+                <pre id="sqlOutput"></pre>
+            </div>
+
+            <div class="section">
+                <h3>AI Feature Center</h3>
+
+                <div class="ai-grid">
+                    <div class="ai-card">
+                        <h4>Semantic Schema Retrieval</h4>
+                        <div id="ragOutput">Relevant tables will appear here.</div>
+                    </div>
+
+                    <div class="ai-card">
+                        <h4>Conversational Memory</h4>
+                        <div id="memoryOutput">No active memory yet.</div>
+                    </div>
+
+                    <div class="ai-card">
+                        <h4>AI Insights</h4>
+                        <div id="aiInsightsOutput">Run a query to generate AI insights.</div>
+                    </div>
+
+                    <div class="ai-card">
+                        <h4>Auto SQL Repair</h4>
+                        <div id="sqlRepairOutput">No repair needed.</div>
+                    </div>
+
+                    <div class="ai-card">
+                        <h4>Chart Recommendation</h4>
+                        <div id="chartRecommendationOutput">Chart recommendation will appear here.</div>
+                    </div>
+
+                    <div class="ai-card">
+                        <h4>Query Risk Score</h4>
+                        <div id="riskScoreOutput">Risk score not calculated yet.</div>
+                    </div>
+
+                    <div class="ai-card full-width">
+                        <h4>AI Dashboard Suggestions</h4>
+                        <div id="dashboardSuggestionOutput">Dashboard suggestions will appear here.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Visual Analysis</h3>
+
+                <div class="top-actions">
+                    <button onclick="renderChartByType('bar')">Bar Chart</button>
+                    <button class="secondary-btn" onclick="renderChartByType('line')">Line Chart</button>
+                    <button class="secondary-btn" onclick="renderChartByType('pie')">Pie Chart</button>
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="ordersChart" width="1400" height="420"></canvas>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Advanced Analytics</h3>
+
+                <div class="top-actions">
+                    <button onclick="renderAdvancedAnalytics()">Refresh Analytics</button>
+                </div>
+
+                <div class="ai-grid">
+                    <div class="ai-card">
+                        <h4>Trend Summary</h4>
+                        <div id="trendSummaryOutput">Run a query to see trends.</div>
+                    </div>
+
+                    <div class="ai-card">
+                        <h4>Column Profile</h4>
+                        <div id="columnProfileOutput">No profile available.</div>
+                    </div>
+
+                    <div class="ai-card">
+                        <h4>Top Records</h4>
+                        <div id="topRecordsOutput">No top records available.</div>
+                    </div>
+
+                    <div class="ai-card">
+                        <h4>Data Quality</h4>
+                        <div id="dataQualityOutput">No data quality report available.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Query Results</h3>
+
+                <div class="table-tools">
+                    <input id="tableSearch" placeholder="Search result table..." oninput="searchTable()">
+                    <div>
+                        <button onclick="previousPage()">Previous</button>
+                        <span id="pageInfo">Page 0 of 0</span>
+                        <button onclick="nextPage()">Next</button>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <div id="tableContainer"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    let textToSqlUrl = "";
+    let allRows = [];
+    let filteredRows = [];
+    let currentPage = 1;
+    let currentSortColumn = null;
+    let currentSortDirection = "desc";
+    const pageSize = 50;
+
+    function setHtmlIfExists(id, html) {
+        const element = document.getElementById(id);
+
+        if (element) {
+            element.innerHTML = html;
+        }
+    }
+
+    function setTextIfExists(id, text) {
+        const element = document.getElementById(id);
+
+        if (element) {
+            element.textContent = text;
+        }
+    }
+
+    async function loadSuggestions() {
+        const container =
+            document.getElementById("suggestionsContainer");
+
+        if (!container) {
+            return;
+        }
+
+        try {
+            const response =
+                await fetch("/suggestions.txt");
+
+            if (!response.ok) {
+                throw new Error("Unable to load suggestions.txt");
+            }
+
+            const text =
+                await response.text();
+
+            const suggestions =
+                text
+                    .split(/\r?\n/)
+                    .map(line => line.trim())
+                    .filter(line => line.length > 0)
+                    .filter(line => !line.startsWith("#"));
+
+            container.innerHTML = "";
+
+            suggestions.forEach(suggestion => {
+                const span =
+                    document.createElement("span");
+
+                span.textContent = suggestion;
+
+                span.onclick = () => {
+                    document.getElementById("questionInput").value =
+                        suggestion;
+                };
+
+                container.appendChild(span);
+            });
+
+            if (suggestions.length === 0) {
+                container.textContent =
+                    "No suggestions available.";
+            }
+
+        } catch (err) {
+            container.textContent =
+                "Failed to load suggestions.";
+        }
+    }
+
+    async function loadConfig() {
+        try {
+            const response = await fetch("/api/ui-config");
+            const config = await response.json();
+            textToSqlUrl = config.textToSqlUrl;
+        } catch (err) {
+            setTextIfExists(
+                "errorMessage",
+                "Failed to load UI configuration"
+            );
+        }
+    }
+
+    async function runQuery() {
+        const questionElement = document.getElementById("questionInput");
+        const question = questionElement ? questionElement.value.trim() : "";
+
+        if (!question) {
+            return;
+        }
+
+        addChatMessage(question, "user");
+
+        clearResults(false);
+
+        setTextIfExists("loadingMessage", "Thinking and executing query...");
+
+        try {
+            if (!textToSqlUrl) {
+                await loadConfig();
+            }
+
+            const response = await fetch(textToSqlUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ question })
+            });
+
+            const data = await response.json();
+
+            setTextIfExists("loadingMessage", "");
+
+            if (!response.ok) {
+                setTextIfExists(
+                    "errorMessage",
+                    data.message || "Unknown error occurred"
+                );
+
+                addChatMessage(
+                    "I could not complete the query. Please check the error message.",
+                    "bot"
+                );
+                return;
+            }
+
+            setHtmlIfExists(
+                "sqlOutput",
+                highlightSql(data.generatedSql || "")
+            );
+
+            allRows = data.rows || [];
+            filteredRows = [...allRows];
+            currentPage = 1;
+            currentSortColumn = null;
+            currentSortDirection = "desc";
+
+            renderAiFeatureCenter(question, data);
+            saveQueryHistory(question);
+
+            if (allRows.length > 0) {
+                renderKpis(allRows);
+                renderInsights(allRows);
+                renderChart(allRows);
+                renderTablePage();
+                renderAdvancedAnalytics();
+
+                addChatMessage(
+                    `Done. I generated SQL and returned ${allRows.length} row(s). Check the insights, chart, analytics, and table.`,
+                    "bot"
+                );
+            } else {
+                setHtmlIfExists(
+                    "tableContainer",
+                    "<p style='text-align:center'>No rows returned.</p>"
+                );
+
+                addChatMessage(
+                    "The query ran successfully, but no rows were returned.",
+                    "bot"
+                );
+            }
+
+        } catch (err) {
+            setTextIfExists("loadingMessage", "");
+            setTextIfExists(
+                "errorMessage",
+                "Error while processing response: " + err.message
+            );
+
+            addChatMessage(
+                "I could not connect to the backend. Please check if Spring Boot is running.",
+                "bot"
+            );
+        }
+    }
+
+    function addChatMessage(text, type) {
+        const chatBox = document.getElementById("chatBox");
+
+        if (!chatBox) {
+            return;
+        }
+
+        const message = document.createElement("div");
+        message.className = "message " + type;
+
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.textContent = text;
+
+        message.appendChild(bubble);
+        chatBox.appendChild(message);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function renderKpis(rows) {
+        const numericColumn = findNumericColumn(rows);
+
+        setTextIfExists("kpiRows", rows.length.toLocaleString());
+
+        if (!numericColumn) {
+            setTextIfExists("kpiTotal", "-");
+            setTextIfExists("kpiAverage", "-");
+            setTextIfExists("kpiMax", "-");
+            return;
+        }
+
+        const values = rows
+            .map(row => Number(row[numericColumn]))
+            .filter(value => !isNaN(value));
+
+        const total = values.reduce((a, b) => a + b, 0);
+        const avg = values.length ? Math.round(total / values.length) : 0;
+        const max = values.length ? Math.max(...values) : 0;
+
+        setTextIfExists("kpiTotal", total.toLocaleString());
+        setTextIfExists("kpiAverage", avg.toLocaleString());
+        setTextIfExists("kpiMax", max.toLocaleString());
+    }
+
+    function renderInsights(rows) {
+        const numericColumn = findNumericColumn(rows);
+        const labelColumn = findLabelColumn(rows);
+
+        if (!numericColumn) {
+            setHtmlIfExists(
+                "insightsBox",
+                "No numeric column found for insight generation."
+            );
+            return;
+        }
+
+        let maxRow = rows[0];
+        let total = 0;
+
+        rows.forEach(row => {
+            const value = Number(row[numericColumn]);
+            total += isNaN(value) ? 0 : value;
+
+            if (Number(row[numericColumn]) > Number(maxRow[numericColumn])) {
+                maxRow = row;
+            }
+        });
+
+        const highestLabel =
+            labelColumn ? maxRow[labelColumn] : JSON.stringify(maxRow);
+
+        const highestValue =
+            Number(maxRow[numericColumn]).toLocaleString();
+
+        setHtmlIfExists(
+            "insightsBox",
+            `
+                <h3>Smart Insights</h3>
+                <p><b>Total rows returned:</b> ${rows.length.toLocaleString()}</p>
+                <p><b>Total ${numericColumn}:</b> ${total.toLocaleString()}</p>
+                <p><b>Highest record:</b> ${highestLabel} with ${highestValue}</p>
+                <p><b>Detected chart columns:</b> ${labelColumn || "N/A"} vs ${numericColumn}</p>
+            `
+        );
+    }
+
+    function renderTablePage() {
+        const start = (currentPage - 1) * pageSize;
+        const end = start + pageSize;
+        const pageRows = filteredRows.slice(start, end);
+
+        renderTable(pageRows);
+
+        const totalPages = Math.ceil(filteredRows.length / pageSize);
+
+        setTextIfExists(
+            "pageInfo",
+            `Page ${currentPage} of ${totalPages || 1}`
+        );
+    }
+
+    function renderTable(rows) {
+        const tableContainer = document.getElementById("tableContainer");
+
+        if (!tableContainer) {
+            return;
+        }
+
+        tableContainer.innerHTML = "";
+
+        if (!rows || rows.length === 0) {
+            tableContainer.innerHTML =
+                "<p style='text-align:center'>No rows found.</p>";
+            return;
+        }
+
+        const table = document.createElement("table");
+        const thead = document.createElement("thead");
+        const headerRow = document.createElement("tr");
+
+        const columns = Object.keys(rows[0]);
+
+        columns.forEach(col => {
+            const th = document.createElement("th");
+            const sortMarker =
+                currentSortColumn === col
+                    ? currentSortDirection === "asc" ? " ↑" : " ↓"
+                    : " ↕";
+
+            th.textContent = col + sortMarker;
+            th.className = "sortable";
+            th.onclick = () => sortTableByColumn(col);
+            headerRow.appendChild(th);
+        });
+
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement("tbody");
+
+        rows.forEach(row => {
+            const tr = document.createElement("tr");
+
+            columns.forEach(col => {
+                const td = document.createElement("td");
+                td.textContent = row[col] !== null && row[col] !== undefined ? row[col] : "";
+                tr.appendChild(td);
+            });
+
+            tbody.appendChild(tr);
+        });
+
+        table.appendChild(tbody);
+        tableContainer.appendChild(table);
+    }
+
+    function renderChart(rows) {
+        const canvas = document.getElementById("ordersChart");
+
+        if (!canvas) {
+            return;
+        }
+
+        const ctx = canvas.getContext("2d");
+
+        clearChart();
+
+        if (!rows || rows.length === 0) {
+            return;
+        }
+
+        const labelColumn = findLabelColumn(rows);
+        const valueColumn = findNumericColumn(rows);
+
+        if (!labelColumn || !valueColumn) {
+            drawCenteredChartMessage(
+                ctx,
+                canvas,
+                "Chart requires one label/date column and one numeric column"
+            );
+            return;
+        }
+
+        const chartData = rows
+            .slice(0, 20)
+            .map(row => ({
+                label: String(row[labelColumn] ?? ""),
+                value: Number(row[valueColumn])
+            }))
+            .filter(item =>
+                Number.isFinite(item.value) &&
+                item.value >= 0
+            );
+
+        if (chartData.length === 0) {
+            drawCenteredChartMessage(
+                ctx,
+                canvas,
+                "No valid numeric data available for chart"
+            );
+            return;
+        }
+
+        const maxValue = Math.max(...chartData.map(item => item.value));
+
+        if (!Number.isFinite(maxValue) || maxValue <= 0) {
+            drawCenteredChartMessage(
+                ctx,
+                canvas,
+                "Chart cannot be drawn because all values are zero"
+            );
+            return;
+        }
+
+        const paddingLeft = 90;
+        const paddingRight = 50;
+        const paddingTop = 60;
+        const paddingBottom = 110;
+
+        const chartWidth = canvas.width - paddingLeft - paddingRight;
+        const chartHeight = canvas.height - paddingTop - paddingBottom;
+
+        const barGap = 18;
+        const barWidth = Math.max(
+            35,
+            (chartWidth / chartData.length) - barGap
+        );
+
+        ctx.font = "18px Arial";
+        ctx.textAlign = "center";
+        ctx.fillStyle =
+            document.body.classList.contains("dark")
+                ? "#ffffff"
+                : "#111827";
+
+        ctx.fillText(
+            "Top Result Distribution",
+            canvas.width / 2,
+            30
+        );
+
+        drawChartAxis(ctx, paddingLeft, paddingTop, chartWidth, chartHeight);
+
+        chartData.forEach((item, index) => {
+            const x =
+                paddingLeft +
+                index * (barWidth + barGap) +
+                barGap;
+
+            const barHeight =
+                (item.value / maxValue) * chartHeight;
+
+            const y =
+                paddingTop + chartHeight - barHeight;
+
+            if (
+                !Number.isFinite(x) ||
+                !Number.isFinite(y) ||
+                !Number.isFinite(barHeight)
+            ) {
+                return;
+            }
+
+            const gradient =
+                ctx.createLinearGradient(
+                    0,
+                    y,
+                    0,
+                    paddingTop + chartHeight
+                );
+
+            gradient.addColorStop(0, "#7c3aed");
+            gradient.addColorStop(1, "#2563eb");
+
+            ctx.fillStyle = gradient;
+            ctx.fillRect(x, y, barWidth, barHeight);
+
+            ctx.fillStyle =
+                document.body.classList.contains("dark")
+                    ? "#ffffff"
+                    : "#111827";
+
+            ctx.font = "13px Arial";
+
+            ctx.fillText(
+                item.value.toLocaleString(),
+                x + barWidth / 2,
+                y - 8
+            );
+
+            ctx.save();
+            ctx.translate(
+                x + barWidth / 2,
+                paddingTop + chartHeight + 18
+            );
+            ctx.rotate(-Math.PI / 4);
+            ctx.textAlign = "right";
+            ctx.fillText(item.label, 0, 0);
+            ctx.restore();
+        });
+    }
+
+    function renderAiFeatureCenter(question, data) {
+        const generatedSql = data.generatedSql || "";
+        const rows = data.rows || [];
+
+        renderRagInfo(question, generatedSql);
+        renderMemoryInfo(question, generatedSql);
+        renderBasicAiInsights(rows);
+        renderSqlRepairStatus(data);
+        renderChartRecommendation(rows);
+        renderRiskScore(generatedSql);
+        renderDashboardSuggestions(rows);
+    }
+
+    function renderRagInfo(question, sql) {
+        const tables = [];
+
+        const matches = sql.match(/from\s+([a-zA-Z0-9_.]+)/gi) || [];
+
+        matches.forEach(match => {
+            tables.push(
+                match.replace(/from\s+/i, "")
+            );
+        });
+
+        setHtmlIfExists(
+            "ragOutput",
+            tables.length
+                ? `<b>Relevant schema detected:</b><br>${tables.join("<br>")}`
+                : "No relevant table detected."
+        );
+    }
+
+    function renderMemoryInfo(question, sql) {
+        const memory = JSON.parse(
+            localStorage.getItem("conversationMemory") || "[]"
+        );
+
+        memory.unshift({
+            question,
+            sql,
+            time: new Date().toLocaleString()
+        });
+
+        const latestMemory = memory.slice(0, 5);
+
+        localStorage.setItem(
+            "conversationMemory",
+            JSON.stringify(latestMemory)
+        );
+
+        setHtmlIfExists(
+            "memoryOutput",
+            latestMemory
+                .map(item => `<div>• ${escapeHtml(item.question)}</div>`)
+                .join("")
+        );
+    }
+
+    function renderBasicAiInsights(rows) {
+        if (!rows || rows.length === 0) {
+            setHtmlIfExists(
+                "aiInsightsOutput",
+                "No rows available for insights."
+            );
+            return;
+        }
+
+        const numericColumn = findNumericColumn(rows);
+
+        if (!numericColumn) {
+            setHtmlIfExists(
+                "aiInsightsOutput",
+                "No numeric column detected."
+            );
+            return;
+        }
+
+        const values = rows
+            .map(row => Number(row[numericColumn]))
+            .filter(value => !isNaN(value));
+
+        const total = values.reduce((a, b) => a + b, 0);
+        const max = values.length ? Math.max(...values) : 0;
+        const avg = values.length ? Math.round(total / values.length) : 0;
+
+        setHtmlIfExists(
+            "aiInsightsOutput",
+            `
+                <b>Generated insight:</b><br>
+                Total ${numericColumn}: ${total.toLocaleString()}<br>
+                Average: ${avg.toLocaleString()}<br>
+                Highest value: ${max.toLocaleString()}
+            `
+        );
+    }
+
+    function renderSqlRepairStatus(data) {
+        if (data.repairedSql) {
+            setHtmlIfExists(
+                "sqlRepairOutput",
+                `
+                    <b>Original failed SQL:</b><br>
+                    <code>${escapeHtml(data.failedSql || "-")}</code><br><br>
+                    <b>Repaired SQL:</b><br>
+                    <code>${escapeHtml(data.repairedSql)}</code>
+                `
+            );
+        } else {
+            setHtmlIfExists(
+                "sqlRepairOutput",
+                "SQL executed successfully. No repair needed."
+            );
+        }
+    }
+
+    function renderChartRecommendation(rows) {
+        if (!rows || rows.length === 0) {
+            setHtmlIfExists(
+                "chartRecommendationOutput",
+                "No data available."
+            );
+            return;
+        }
+
+        const labelColumn = findLabelColumn(rows);
+        const numericColumn = findNumericColumn(rows);
+
+        let chartType = "Table";
+
+        if (labelColumn && numericColumn) {
+            if (
+                labelColumn.toLowerCase().includes("date") ||
+                labelColumn.toLowerCase().includes("day") ||
+                labelColumn.toLowerCase().includes("created")
+            ) {
+                chartType = "Line chart";
+            } else {
+                chartType = "Bar chart";
+            }
+        }
+
+        setHtmlIfExists(
+            "chartRecommendationOutput",
+            `
+                <b>Recommended chart:</b> ${chartType}<br>
+                <b>X-axis:</b> ${labelColumn || "N/A"}<br>
+                <b>Y-axis:</b> ${numericColumn || "N/A"}
+            `
+        );
+    }
+
+    function renderRiskScore(sql) {
+        const lowerSql = sql.toLowerCase();
+
+        let score = 10;
+        let risk = "LOW";
+        let reasons = [];
+
+        if (lowerSql.includes("select *")) {
+            score += 30;
+            reasons.push("Uses SELECT *");
+        }
+
+        if (!lowerSql.includes("where")) {
+            score += 25;
+            reasons.push("No WHERE clause");
+        }
+
+        if (!lowerSql.includes("limit")) {
+            score += 20;
+            reasons.push("No LIMIT clause");
+        }
+
+        if (lowerSql.includes("join")) {
+            score += 15;
+            reasons.push("Uses JOIN");
+        }
+
+        if (score >= 60) {
+            risk = "HIGH";
+        } else if (score >= 35) {
+            risk = "MEDIUM";
+        }
+
+        setHtmlIfExists(
+            "riskScoreOutput",
+            `
+                <b>Risk:</b> ${risk}<br>
+                <b>Score:</b> ${score}/100<br>
+                <b>Reason:</b> ${reasons.length ? reasons.join(", ") : "Safe query pattern"}
+            `
+        );
+    }
+
+    function renderDashboardSuggestions(rows) {
+        if (!rows || rows.length === 0) {
+            setHtmlIfExists(
+                "dashboardSuggestionOutput",
+                "No dashboard suggestions available."
+            );
+            return;
+        }
+
+        const labelColumn = findLabelColumn(rows);
+        const numericColumn = findNumericColumn(rows);
+
+        setHtmlIfExists(
+            "dashboardSuggestionOutput",
+            `
+                Suggested dashboard:
+                <ul>
+                    <li>KPI card for total ${numericColumn || "records"}</li>
+                    <li>Trend chart by ${labelColumn || "primary dimension"}</li>
+                    <li>Top records table with search, sorting, and pagination</li>
+                    <li>Risk score and SQL explanation panel</li>
+                </ul>
+            `
+        );
+    }
+
+    function renderAdvancedAnalytics() {
+        if (!allRows || allRows.length === 0) {
+            setHtmlIfExists("trendSummaryOutput", "Run a query to see trends.");
+            setHtmlIfExists("columnProfileOutput", "No profile available.");
+            setHtmlIfExists("topRecordsOutput", "No top records available.");
+            setHtmlIfExists("dataQualityOutput", "No data quality report available.");
+            return;
+        }
+
+        renderTrendSummary(allRows);
+        renderColumnProfile(allRows);
+        renderTopRecords(allRows);
+        renderDataQuality(allRows);
+    }
+
+    function renderTrendSummary(rows) {
+        const labelColumn = findLabelColumn(rows);
+        const numericColumn = findNumericColumn(rows);
+
+        if (!labelColumn || !numericColumn || rows.length < 2) {
+            setHtmlIfExists(
+                "trendSummaryOutput",
+                "Trend requires one label/date column and one numeric column."
+            );
+            return;
+        }
+
+        const points = rows
+            .map(row => ({
+                label: row[labelColumn],
+                value: Number(row[numericColumn])
+            }))
+            .filter(point => Number.isFinite(point.value));
+
+        if (points.length < 2) {
+            setHtmlIfExists(
+                "trendSummaryOutput",
+                "Not enough numeric data to detect trend."
+            );
+            return;
+        }
+
+        const first = points[0].value;
+        const last = points[points.length - 1].value;
+        const diff = last - first;
+        const percent =
+            first !== 0
+                ? ((diff / first) * 100).toFixed(2)
+                : "N/A";
+
+        let direction = "stable";
+
+        if (diff > 0) {
+            direction = "increasing";
+        } else if (diff < 0) {
+            direction = "decreasing";
+        }
+
+        const maxPoint = points.reduce(
+            (max, item) => item.value > max.value ? item : max,
+            points[0]
+        );
+
+        const minPoint = points.reduce(
+            (min, item) => item.value < min.value ? item : min,
+            points[0]
+        );
+
+        setHtmlIfExists(
+            "trendSummaryOutput",
+            `
+                <b>Trend:</b> ${direction}<br>
+                <b>First value:</b> ${first.toLocaleString()}<br>
+                <b>Last value:</b> ${last.toLocaleString()}<br>
+                <b>Change:</b> ${diff.toLocaleString()} (${percent}%)<br>
+                <b>Peak:</b> ${maxPoint.label} = ${maxPoint.value.toLocaleString()}<br>
+                <b>Lowest:</b> ${minPoint.label} = ${minPoint.value.toLocaleString()}
+            `
+        );
+    }
+
+    function renderColumnProfile(rows) {
+        const columns = Object.keys(rows[0]);
+
+        const html = columns.map(column => {
+            const values = rows.map(row => row[column]);
+            const nonNullValues =
+                values.filter(value =>
+                    value !== null &&
+                    value !== undefined &&
+                    value !== ""
+                );
+
+            const uniqueCount =
+                new Set(nonNullValues.map(value => String(value))).size;
+
+            const numericCount =
+                nonNullValues.filter(value => !isNaN(Number(value))).length;
+
+            let type = "text";
+
+            if (numericCount === nonNullValues.length && nonNullValues.length > 0) {
+                type = "number";
+            } else if (
+                column.toLowerCase().includes("date") ||
+                column.toLowerCase().includes("created") ||
+                column.toLowerCase().includes("modified") ||
+                column.toLowerCase().includes("timestamp")
+            ) {
+                type = "date/time";
+            }
+
+            return `
+                <div>
+                    <b>${escapeHtml(column)}</b><br>
+                    Type: ${type}<br>
+                    Non-null: ${nonNullValues.length.toLocaleString()}<br>
+                    Unique: ${uniqueCount.toLocaleString()}
+                </div>
+                <hr>
+            `;
+        }).join("");
+
+        setHtmlIfExists("columnProfileOutput", html);
+    }
+
+    function renderTopRecords(rows) {
+        const numericColumn = findNumericColumn(rows);
+        const labelColumn = findLabelColumn(rows);
+
+        if (!numericColumn) {
+            setHtmlIfExists(
+                "topRecordsOutput",
+                "No numeric column found."
+            );
+            return;
+        }
+
+        const sortedRows = [...rows]
+            .filter(row => Number.isFinite(Number(row[numericColumn])))
+            .sort((a, b) => Number(b[numericColumn]) - Number(a[numericColumn]))
+            .slice(0, 5);
+
+        setHtmlIfExists(
+            "topRecordsOutput",
+            sortedRows.map((row, index) => `
+                <div>
+                    <b>#${index + 1}</b>
+                    ${escapeHtml(String(labelColumn ? row[labelColumn] : JSON.stringify(row)))}
+                    → ${Number(row[numericColumn]).toLocaleString()}
+                </div>
+            `).join("")
+        );
+    }
+
+    function renderDataQuality(rows) {
+        const columns = Object.keys(rows[0]);
+        const totalCells = rows.length * columns.length;
+
+        let nullCells = 0;
+        let emptyStringCells = 0;
+
+        rows.forEach(row => {
+            columns.forEach(column => {
+                if (row[column] === null || row[column] === undefined) {
+                    nullCells++;
+                }
+
+                if (row[column] === "") {
+                    emptyStringCells++;
+                }
+            });
+        });
+
+        const completeness =
+            totalCells > 0
+                ? (((totalCells - nullCells - emptyStringCells) / totalCells) * 100).toFixed(2)
+                : 0;
+
+        setHtmlIfExists(
+            "dataQualityOutput",
+            `
+                <b>Total rows:</b> ${rows.length.toLocaleString()}<br>
+                <b>Total columns:</b> ${columns.length.toLocaleString()}<br>
+                <b>Total cells:</b> ${totalCells.toLocaleString()}<br>
+                <b>Null cells:</b> ${nullCells.toLocaleString()}<br>
+                <b>Empty cells:</b> ${emptyStringCells.toLocaleString()}<br>
+                <b>Completeness:</b> ${completeness}%
+            `
+        );
+    }
+
+    function sortTableByColumn(column) {
+        const sampleValue =
+            filteredRows.find(row =>
+                row[column] !== null &&
+                row[column] !== undefined
+            )?.[column];
+
+        const isNumeric =
+            sampleValue !== undefined &&
+            !isNaN(Number(sampleValue));
+
+        if (currentSortColumn === column) {
+            currentSortDirection =
+                currentSortDirection === "asc" ? "desc" : "asc";
+        } else {
+            currentSortColumn = column;
+            currentSortDirection = "desc";
+        }
+
+        filteredRows.sort((a, b) => {
+            const valueA = a[column];
+            const valueB = b[column];
+
+            let comparison;
+
+            if (isNumeric) {
+                comparison = Number(valueA) - Number(valueB);
+            } else {
+                comparison = String(valueA ?? "")
+                    .localeCompare(String(valueB ?? ""));
+            }
+
+            return currentSortDirection === "asc"
+                ? comparison
+                : -comparison;
+        });
+
+        currentPage = 1;
+        renderTablePage();
+    }
+
+    function renderChartByType(type) {
+        if (!allRows || allRows.length === 0) {
+            return;
+        }
+
+        if (type === "bar") {
+            renderChart(allRows);
+            return;
+        }
+
+        const canvas = document.getElementById("ordersChart");
+
+        if (!canvas) {
+            return;
+        }
+
+        const ctx = canvas.getContext("2d");
+
+        clearChart();
+
+        const labelColumn = findLabelColumn(allRows);
+        const valueColumn = findNumericColumn(allRows);
+
+        if (!labelColumn || !valueColumn) {
+            drawCenteredChartMessage(
+                ctx,
+                canvas,
+                "Chart requires one label column and one numeric column"
+            );
+            return;
+        }
+
+        const chartData = allRows
+            .slice(0, 12)
+            .map(row => ({
+                label: String(row[labelColumn] ?? ""),
+                value: Number(row[valueColumn])
+            }))
+            .filter(item => Number.isFinite(item.value));
+
+        if (type === "line") {
+            drawLineChart(ctx, canvas, chartData);
+        }
+
+        if (type === "pie") {
+            drawPieChart(ctx, canvas, chartData);
+        }
+    }
+
+    function drawLineChart(ctx, canvas, chartData) {
+        if (!chartData || chartData.length === 0) {
+            drawCenteredChartMessage(ctx, canvas, "No valid data for line chart");
+            return;
+        }
+
+        const paddingLeft = 90;
+        const paddingRight = 50;
+        const paddingTop = 60;
+        const paddingBottom = 100;
+
+        const width = canvas.width - paddingLeft - paddingRight;
+        const height = canvas.height - paddingTop - paddingBottom;
+
+        const maxValue = Math.max(...chartData.map(item => item.value));
+
+        if (!Number.isFinite(maxValue) || maxValue <= 0) {
+            drawCenteredChartMessage(ctx, canvas, "Line chart requires positive values");
+            return;
+        }
+
+        ctx.font = "18px Arial";
+        ctx.textAlign = "center";
+        ctx.fillStyle =
+            document.body.classList.contains("dark") ? "#ffffff" : "#111827";
+
+        ctx.fillText("Line Trend", canvas.width / 2, 30);
+
+        drawChartAxis(ctx, paddingLeft, paddingTop, width, height);
+
+        ctx.beginPath();
+
+        chartData.forEach((item, index) => {
+            const x =
+                paddingLeft +
+                (index / Math.max(chartData.length - 1, 1)) * width;
+
+            const y =
+                paddingTop +
+                height -
+                (item.value / maxValue) * height;
+
+            if (index === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        });
+
+        ctx.strokeStyle = "#2563eb";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        chartData.forEach((item, index) => {
+            const x =
+                paddingLeft +
+                (index / Math.max(chartData.length - 1, 1)) * width;
+
+            const y =
+                paddingTop +
+                height -
+                (item.value / maxValue) * height;
+
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
+            ctx.fillStyle = "#7c3aed";
+            ctx.fill();
+
+            ctx.fillStyle =
+                document.body.classList.contains("dark") ? "#ffffff" : "#111827";
+
+            ctx.font = "13px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText(item.value.toLocaleString(), x, y - 10);
+
+            ctx.save();
+            ctx.translate(x, paddingTop + height + 22);
+            ctx.rotate(-Math.PI / 4);
+            ctx.textAlign = "right";
+            ctx.fillText(item.label, 0, 0);
+            ctx.restore();
+        });
+    }
+
+    function drawPieChart(ctx, canvas, chartData) {
+        if (!chartData || chartData.length === 0) {
+            drawCenteredChartMessage(ctx, canvas, "No valid data for pie chart");
+            return;
+        }
+
+        const total = chartData.reduce((sum, item) => sum + item.value, 0);
+
+        if (total <= 0) {
+            drawCenteredChartMessage(ctx, canvas, "Pie chart requires positive values");
+            return;
+        }
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = 140;
+
+        let startAngle = 0;
+
+        chartData.forEach((item, index) => {
+            const sliceAngle = (item.value / total) * Math.PI * 2;
+
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(
+                centerX,
+                centerY,
+                radius,
+                startAngle,
+                startAngle + sliceAngle
+            );
+            ctx.closePath();
+
+            ctx.fillStyle = getChartColor(index);
+            ctx.fill();
+
+            startAngle += sliceAngle;
+        });
+
+        ctx.font = "16px Arial";
+        ctx.textAlign = "left";
+
+        chartData.forEach((item, index) => {
+            const y = 40 + index * 26;
+
+            ctx.fillStyle = getChartColor(index);
+            ctx.fillRect(60, y - 12, 18, 18);
+
+            ctx.fillStyle =
+                document.body.classList.contains("dark") ? "#ffffff" : "#111827";
+
+            ctx.fillText(
+                `${item.label}: ${item.value.toLocaleString()}`,
+                90,
+                y
+            );
+        });
+    }
+
+    function drawChartAxis(ctx, paddingLeft, paddingTop, chartWidth, chartHeight) {
+        ctx.beginPath();
+        ctx.moveTo(paddingLeft, paddingTop);
+        ctx.lineTo(paddingLeft, paddingTop + chartHeight);
+        ctx.lineTo(paddingLeft + chartWidth, paddingTop + chartHeight);
+        ctx.strokeStyle = "#9ca3af";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+
+    function drawCenteredChartMessage(ctx, canvas, message) {
+        ctx.font = "18px Arial";
+        ctx.textAlign = "center";
+        ctx.fillStyle =
+            document.body.classList.contains("dark") ? "#ffffff" : "#111827";
+
+        ctx.fillText(
+            message,
+            canvas.width / 2,
+            canvas.height / 2
+        );
+    }
+
+    function getChartColor(index) {
+        const colors = [
+            "#2563eb",
+            "#7c3aed",
+            "#10b981",
+            "#f59e0b",
+            "#ef4444",
+            "#06b6d4",
+            "#84cc16",
+            "#ec4899",
+            "#6366f1",
+            "#14b8a6",
+            "#f97316",
+            "#64748b"
+        ];
+
+        return colors[index % colors.length];
+    }
+
+    function searchTable() {
+        const input = document.getElementById("tableSearch");
+        const searchText = input ? input.value.toLowerCase() : "";
+
+        filteredRows = allRows.filter(row =>
+            Object.values(row).some(value =>
+                String(value ?? "").toLowerCase().includes(searchText)
+            )
+        );
+
+        currentPage = 1;
+        renderTablePage();
+    }
+
+    function findNumericColumn(rows) {
+        if (!rows || rows.length === 0) {
+            return null;
+        }
+
+        const columns = Object.keys(rows[0]);
+
+        return columns.find(c => c.toLowerCase().includes("count")) ||
+            columns.find(c => c.toLowerCase().includes("total")) ||
+            columns.find(c => c.toLowerCase().includes("amount")) ||
+            columns.find(c => c.toLowerCase().includes("price")) ||
+            columns.find(c => typeof rows[0][c] === "number") ||
+            columns.find(c => !isNaN(Number(rows[0][c])));
+    }
+
+    function findLabelColumn(rows) {
+        if (!rows || rows.length === 0) {
+            return null;
+        }
+
+        const columns = Object.keys(rows[0]);
+
+        return columns.find(c => c.toLowerCase().includes("date")) ||
+            columns.find(c => c.toLowerCase().includes("day")) ||
+            columns.find(c => c.toLowerCase().includes("created")) ||
+            columns.find(c => c.toLowerCase().includes("modified")) ||
+            columns.find(c => c.toLowerCase().includes("status")) ||
+            columns.find(c => c.toLowerCase().includes("order")) ||
+            columns[0];
+    }
+
+    function highlightSql(sql) {
+        return escapeHtml(sql).replace(
+            /\b(SELECT|FROM|WHERE|GROUP BY|ORDER BY|LIMIT|COUNT|SUM|AVG|MAX|MIN|JOIN|LEFT JOIN|RIGHT JOIN|INNER JOIN|ON|AND|OR|LIKE|DESC|ASC|HAVING|DISTINCT|AS|CASE|WHEN|THEN|ELSE|END)\b/gi,
+            '<span class="sql-keyword">$1</span>'
+        );
+    }
+
+    function downloadCSV() {
+        if (!allRows || allRows.length === 0) {
+            alert("No data to download");
+            return;
+        }
+
+        const columns = Object.keys(allRows[0]);
+        const csvRows = [];
+
+        csvRows.push(columns.join(","));
+
+        allRows.forEach(row => {
+            csvRows.push(
+                columns.map(col =>
+                    `"${String(row[col] ?? "").replace(/"/g, '""')}"`
+                ).join(",")
+            );
+        });
+
+        const blob = new Blob(
+            [csvRows.join("\n")],
+            { type: "text/csv" }
+        );
+
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "query-results.csv";
+        a.click();
+
+        URL.revokeObjectURL(url);
+    }
+
+    function saveQueryHistory(question) {
+        let history =
+            JSON.parse(localStorage.getItem("queryHistory") || "[]");
+
+        history = history.filter(q => q !== question);
+        history.unshift(question);
+        history = history.slice(0, 8);
+
+        localStorage.setItem("queryHistory", JSON.stringify(history));
+        renderHistory();
+    }
+
+    function renderHistory() {
+        const historyContainer = document.getElementById("historyContainer");
+
+        if (!historyContainer) {
+            return;
+        }
+
+        const history =
+            JSON.parse(localStorage.getItem("queryHistory") || "[]");
+
+        historyContainer.innerHTML = "";
+
+        history.forEach(query => {
+            const div = document.createElement("div");
+            div.className = "history-item";
+            div.textContent = query;
+            div.onclick = () => {
+                document.getElementById("questionInput").value = query;
+            };
+            historyContainer.appendChild(div);
+        });
+    }
+
+    function previousPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            renderTablePage();
+        }
+    }
+
+    function nextPage() {
+        const totalPages = Math.ceil(filteredRows.length / pageSize);
+
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderTablePage();
+        }
+    }
+
+    function clearResults(clearChat = true) {
+        setHtmlIfExists("sqlOutput", "");
+        setTextIfExists("errorMessage", "");
+        setTextIfExists("loadingMessage", "");
+        setHtmlIfExists("tableContainer", "");
+        setHtmlIfExists("insightsBox", "Run a query to see smart insights.");
+
+        const tableSearch = document.getElementById("tableSearch");
+
+        if (tableSearch) {
+            tableSearch.value = "";
+        }
+
+        setTextIfExists("kpiRows", "0");
+        setTextIfExists("kpiTotal", "0");
+        setTextIfExists("kpiAverage", "0");
+        setTextIfExists("kpiMax", "0");
+        setTextIfExists("pageInfo", "Page 0 of 0");
+
+        setHtmlIfExists("ragOutput", "Relevant tables will appear here.");
+        setHtmlIfExists("memoryOutput", "No active memory yet.");
+        setHtmlIfExists("aiInsightsOutput", "Run a query to generate AI insights.");
+        setHtmlIfExists("sqlRepairOutput", "No repair needed.");
+        setHtmlIfExists("chartRecommendationOutput", "Chart recommendation will appear here.");
+        setHtmlIfExists("riskScoreOutput", "Risk score not calculated yet.");
+        setHtmlIfExists("dashboardSuggestionOutput", "Dashboard suggestions will appear here.");
+
+        setHtmlIfExists("trendSummaryOutput", "Run a query to see trends.");
+        setHtmlIfExists("columnProfileOutput", "No profile available.");
+        setHtmlIfExists("topRecordsOutput", "No top records available.");
+        setHtmlIfExists("dataQualityOutput", "No data quality report available.");
+
+        allRows = [];
+        filteredRows = [];
+        currentPage = 1;
+        currentSortColumn = null;
+        currentSortDirection = "desc";
+
+        clearChart();
+
+        if (clearChat) {
+            setHtmlIfExists(
+                "chatBox",
+                `
+                    <div class="message bot">
+                        <div class="bubble">
+                            Hi! Ask me questions like “Which day had most orders?” or “Show top 10 orderdelivery records”.
+                        </div>
+                    </div>
+                `
+            );
+        }
+    }
+
+    function clearChart() {
+        const canvas = document.getElementById("ordersChart");
+
+        if (!canvas) {
+            return;
+        }
+
+        const ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function setQuestion(element) {
+        document.getElementById("questionInput").value = element.textContent;
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark");
+
+        if (allRows.length > 0) {
+            renderChart(allRows);
+        }
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        loadConfig();
+        loadSuggestions();
+        renderHistory();
+    });
+</script>
+
+</body>
+</html>

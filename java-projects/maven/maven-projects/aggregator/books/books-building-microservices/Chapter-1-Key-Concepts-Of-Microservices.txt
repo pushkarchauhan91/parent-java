@@ -1,0 +1,129 @@
+------------------------------------------------------------------------------------------------------------------------
+What are Microservices?
+------------------------------------------------------------------------------------------------------------------------
+Microservices can change, deployed and released independently.
+Microservices are designed around a business domain.
+Microservices are opinionated, they are designed to do one thing well.
+Microservice Information Hiding, they hide their implementation details and only expose a well-defined API.
+Loosely coupled systems with autonomous teams.
+Building system that can change to meet need of user.
+------------------------------------------------------------------------------------------------------------------------
+Chapters:
+Foundation:
+What are microservices?
+How to model microservices?
+Splitting the monolith
+Microservice Communication Styles
+
+Implementation:
+Implementing Microservice Communication
+Workflow
+Build
+Deployment
+Testing
+From Monitoring to Observability
+Security
+Resiliency
+Scaling
+
+People:
+User Interfaces
+Organizational Structures
+The Evolutionary Architect
+------------------------------------------------------------------------------------------------------------------------
+SOA vs Microservices
+
+Key Microservices Concepts:
+Independent Deployability /  Loosely Coupled
+Modeling around Business Domains
+Owning their own data and state (Separate Databases)
+Size and Scope (Small, Focused, Doing One Thing Well)
+Flexibility
+
+Bounded Contexts
+Domain-Driven Design
+Event-Driven Architecture
+API Gateway
+Service Discovery
+Circuit Breaker
+Saga Pattern
+CQRS (Command Query Responsibility Segregation)
+Event Sourcing
+Containerization and Orchestration (Docker, Kubernetes)
+Continuous Integration and Continuous Deployment (CI/CD)
+Observability (Logging, Metrics, Tracing)
+
+Previously Teams were divided based on their Core technical competencies (Frontend, Backend, Database, etc.) but with microservices,
+teams are organized around business capabilities or domains.
+Each team is responsible for the entire lifecycle of their microservice, from development to deployment and maintenance.
+This promotes ownership and accountability, allowing teams to work more autonomously and make decisions that best serve their specific domain.
+------------------------------------------------------------------------------------------------------------------------
+Before:
+UI Layer
+Business Logic Layer
+Data Access Layer
+
+After:
+User Management Service
+Order Management Service
+Inventory Service
+Payment Service
+------------------------------------------------------------------------------------------------------------------------
+Monolith: Which can deploy as a single unit, tightly coupled, shared database, single codebase, and can be difficult to scale and maintain.
+Monolith.
+Single Process Monolith
+Modular Monolith (Eg: Shopify) (But difficult to scale and maintain, decompose into microservices)
+Distributed Monolith (Must be deployed together)
+------------------------------------------------------------------------------------------------------------------------
+Limitations of Monolith:
+------------------------------------------------------------------------------------------------------------------------
+Delivery Contention: Multiple teams working on the same codebase can lead to conflicts and delays in deployment.
+Log Aggregation
+Distributed Tracing (Eg: OpenTracing, Jaeger, Humio, Dynatrace, New Relic, Datadog, Lightstep, OpenTelemetry, Honeycomb)
+Correlation ID vs Trace ID vs Span ID vs Request ID vs Activity ID vs Transaction ID vs Operation ID vs Session ID vs User ID vs Correlation Vector vs Trace Context vs Distributed Context vs Distributed Trace Context
+
+Containerization and Orchestration:
+Containerization (Eg: Kubernetes, Docker). Robustness and Throughput.
+------------------------------------------------------------------------------------------------------------------------
+Streaming
+------------------------------------------------------------------------------------------------------------------------
+Share data between microservices using Streaming Platform like Kafka.
+Message Permanence, Compaction, Scale to handle large volumes of data, and support for real-time processing.
+GCP: Managed Database instances, Kubernetes cluster, message brokers, distributed filesystems.
+FAAS: Function as a Service (Eg: AWS Lambda, Azure Functions, Google Cloud Functions). Serverless computing, event-driven architecture, and microservices.
+
+Social Media Application:
+Posts -> Documemnt DB
+Friends -> Graph DB
+Pictures -> Object Storage / Blob Storage
+------------------------------------------------------------------------------------------------------------------------
+Advantages of Microservices:
+------------------------------------------------------------------------------------------------------------------------
+Technology Heterogeneity
+Robustness: Bulkhead (If one system fail it should not cascade across the system)
+Scaling: Scale only the services that need it, rather than the entire application. (On demand provisioning: AWS)
+Ease of Deployment, Independent Deployability
+------------------------------------------------------------------------------------------------------------------------
+Limitations of Microservices:
+------------------------------------------------------------------------------------------------------------------------
+Cannot run more applications locally.
+Data Consistency (Multiple db per service)
+Latency
+Service Modeling
+Cost
+Reporting and Analytics
+Monitoring and Debugging
+Security
+Testing
+
+------------------------------------------------------------------------------------------------------------------------
+Where Microservice Architecture is not a good fit:
+------------------------------------------------------------------------------------------------------------------------
+Small Teams and Startups
+Simple Applications
+
+------------------------------------------------------------------------------------------------------------------------
+Where Microservice Architecture is a good fit:
+------------------------------------------------------------------------------------------------------------------------
+Large and Complex Applications
+Applications with Multiple Business Domains

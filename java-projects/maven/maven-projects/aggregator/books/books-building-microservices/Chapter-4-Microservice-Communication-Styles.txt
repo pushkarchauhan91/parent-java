@@ -1,0 +1,48 @@
+------------------------------------------------------------------------------------------------------------------------
+Microservice communication styles
+------------------------------------------------------------------------------------------------------------------------
+👉 If the user must know the result immediately → Sync
+👉 If it can happen later without blocking the user → Async
+
+Sync
+Payment Authorization
+Order Creation
+Restaurant Availability Check
+Delivery Feasibility Check
+
+Async
+User Notification Service
+PDF Bill Generation Service
+Assign Rider
+Optimize Rider Route
+Refund
+
+Synchronous Blocking
+Asynchronous Blocking
+------------------------------------------------------------------------------------------------------------------------
+Synchronous Blocking
+------------------------------------------------------------------------------------------------------------------------
+Order Processor -> Loyalty Service
+If Loyalty Service is down, Order Processor is blocked until it comes back up.
+When we have multiple synchronous calls, the chances of failure increase, and the user experience degrades.
+
+------------------------------------------------------------------------------------------------------------------------
+Order Processor -> Payment Service -> Fraud Detection Service -> Customer Service
+------------------------------------------------------------------------------------------------------------------------
+Resource Contention occurs when multiple services are trying to access the same resource, such as a database or an API. This can lead to performance issues and increased latency.
+------------------------------------------------------------------------------------------------------------------------
+Asynchronous Blocking
+------------------------------------------------------------------------------------------------------------------------
+Level of Complexity: High
+Requires additional infrastructure (message brokers, queues)
+
+Producer -> Generate a File and dump -> Consumer1, Consumer2, Consumer3
+Polling vs Push vs Pub/Sub vs Message Queues vs Event-Driven Architecture vs CQRS vs Event Sourcing
+vs Saga Pattern vs Circuit Breaker Pattern vs Bulkhead Pattern vs Retry Pattern vs
+Timeout Pattern vs Idempotency vs Distributed Tracing vs Service Mesh vs API Gateway
+vs Service Discovery vs Load Balancing vs Caching vs Rate Limit
+
+Pattern: Request Response Communication
+Implementation: REST, gRPC, GraphQL
+Inbound : Someone calls your service and waits for a response.
+Outbound: The service calls another service and waits for a response.

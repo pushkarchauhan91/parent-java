@@ -1,0 +1,57 @@
+------------------------------------------------------------------------------------------------------------------------
+How to model microservices?
+------------------------------------------------------------------------------------------------------------------------
+Domain Driven Design (DDD)
+Information Hiding
+Cohesion
+Coupling
+
+Strong Cohesion and Loose Coupling.
+As Structure is Strong if cohesion is strong and coupling is low.
+
+Information Hiding
+- Each microservice should hide its internal implementation details from other microservices.
+
+Cohesion
+Code that changes together stays. A microservice should have a single, well-defined responsibility.
+One Class handle only Payment Related code. (SRP) (Single Responsibility Principle)
+
+Coupling
+- Microservices should be loosely coupled, meaning that they should have minimal dependencies on each other.
+One class depends on another class. (DIP) (Dependency Inversion Principle)
+
+Types of Coupling
+1. Content Coupling: One module directly uses the content of another module. (High Coupling)
+2. Common Coupling: Multiple modules share the same global data. (High Coupling)
+3. Control Coupling: One module controls the flow of another module by passing it information on what to do (e.g., passing a flag). (High Coupling)
+4. Stamp Coupling: Modules share a composite data structure and use only a part of it. (Medium Coupling)
+5. Data Coupling: Modules share data through, for example, parameters. Each piece of data is elementary, and there is no control coupling. (Low Coupling)
+6. Message Coupling: Modules communicate only by sending messages to each other. (Low Coupling)
+7. No Coupling: There is no coupling between modules. (Ideal Coupling)
+- Aim for low coupling and high cohesion when designing microservices.
+- High cohesion means that a microservice has a single, well-defined responsibility, while low coupling means that it has minimal dependencies on other microservices.
+- This allows for easier maintenance, scalability, and flexibility in the system, as changes to one microservice are less likely to impact others.
+
+(Low to High Coupling)
+Domain -> Pass Through Coupling -> Common Coupling -> Content Coupling
+
+Domain Coupling
+- Domain coupling refers to the degree to which microservices are related to each other based on their business domain or functionality.
+- High domain coupling occurs when microservices are closely related and share a lot of functionality or data. This can lead to tight coupling and make it difficult to change one microservice
+without affecting others.
+
+Order Processor -> (reserve Stock) Warehouse
+                -> (take Payment) Payment
+
+Common Coupling
+Order Processor -> Warehouse <- Country Static Data
+What if both update same column? (e.g., stock quantity) This can lead to data inconsistency and conflicts.
+
+Fix:
+Order Processor ->
+Warehouse ->
+
+Order -> DB
+------------------------------------------------------------------------------------------------------------------------
+DDD uses Bounded Context meaning Information Hiding.
+

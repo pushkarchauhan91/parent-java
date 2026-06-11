@@ -1,0 +1,2 @@
+rootProject.name = 'gradle-projects'
+include 'gradle-text-to-sql'

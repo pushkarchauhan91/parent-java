@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: versioning-demo
+
+  mvc:
+    apiversion:
+      use:
+        query-parameter: version
+      supported:
+        - 1
+        - 2
+      default: 1
+
+server:
+  port: 9191

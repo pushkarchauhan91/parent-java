@@ -1,0 +1,87 @@
+package rules;
+
+import com.company.rules.SqlRuleFact;
+import com.company.rules.SqlRuleResult;
+
+global SqlRuleResult result;
+
+rule "Only SELECT statements allowed"
+when
+    $fact : SqlRuleFact(selectStatement == false)
+then
+    result.reject(
+        "Only SELECT statements are allowed."
+    );
+end
+
+rule "Public schema not allowed"
+when
+    $fact : SqlRuleFact(
+        sql != null &&
+        sql.toLowerCase().contains(" public.")
+    )
+then
+    result.reject(
+        "Schema 'public' is not allowed."
+    );
+end
+
+rule "information_schema not allowed"
+when
+    $fact : SqlRuleFact(
+        sql != null &&
+        sql.toLowerCase().contains("information_schema")
+    )
+then
+    result.reject(
+        "information_schema is not allowed."
+    );
+end
+
+rule "DELETE not allowed"
+when
+    $fact : SqlRuleFact(
+        sql != null &&
+        sql.toLowerCase().contains(" delete ")
+    )
+then
+    result.reject(
+        "DELETE statements are not allowed."
+    );
+end
+
+rule "UPDATE not allowed"
+when
+    $fact : SqlRuleFact(
+        sql != null &&
+        sql.toLowerCase().contains(" update ")
+    )
+then
+    result.reject(
+        "UPDATE statements are not allowed."
+    );
+end
+
+rule "INSERT not allowed"
+when
+    $fact : SqlRuleFact(
+        sql != null &&
+        sql.toLowerCase().contains(" insert ")
+    )
+then
+    result.reject(
+        "INSERT statements are not allowed."
+    );
+end
+
+rule "DROP not allowed"
+when
+    $fact : SqlRuleFact(
+        sql != null &&
+        sql.toLowerCase().contains(" drop ")
+    )
+then
+    result.reject(
+        "DROP statements are not allowed."
+    );
+end

@@ -1,0 +1,42 @@
+### Text to SQL - Count orderdelivery records
+POST http://localhost:9191/api/text-to-sql
+Content-Type: application/json
+
+{
+  "question": "return count of records from orderdelivery where ordercode starting with uat top 10"
+}
+
+> {%
+    client.test("Check if status is 200", function () {
+        client.assert(response.status === 200, "Expected status 200");
+    });
+
+    const jsonData = response.body;
+
+    client.test("Check generated SQL is present", function () {
+        client.assert(jsonData.generatedSql !== undefined, "generatedSql missing");
+        client.assert(jsonData.generatedSql.length > 0, "generatedSql is empty");
+    });
+
+    client.test("Check generated SQL is count query on orderdelivery", function () {
+        const sql = jsonData.generatedSql.toLowerCase();
+
+        client.assert(sql.includes("select count(*)"), "Missing select count(*)");
+        client.assert(sql.includes("from orderdelivery"), "Missing from orderdelivery");
+        client.assert(sql.includes("ordercode like 'uat%'"), "Missing ordercode like 'uat%'");
+    });
+
+    client.test("Check rows are returned", function () {
+        client.assert(Array.isArray(jsonData.rows), "rows should be array");
+        client.assert(jsonData.rows.length > 0, "rows should not be empty");
+    });
+
+    client.test("Check count exists", function () {
+        client.assert(jsonData.rows[0].hasOwnProperty("count"), "count property missing");
+        client.assert(typeof jsonData.rows[0].count === "number", "count should be number");
+    });
+
+    client.test("Check count is 32286", function () {
+        client.assert(jsonData.rows[0].count === 32286, "Expected count 32286");
+    });
+%}

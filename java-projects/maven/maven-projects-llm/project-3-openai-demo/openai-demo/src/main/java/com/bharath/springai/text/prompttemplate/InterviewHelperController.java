@@ -1,0 +1,30 @@
+package com.bharath.springai.text.prompttemplate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.bharath.springai.services.OpenAiService;
+
+@Controller
+public class InterviewHelperController {
+	@Autowired
+	private OpenAiService service;
+
+	@GetMapping("/showInterviewHelper")
+	public String showInterviewHelper() {
+		return "interviewHelper";
+	}
+
+	@PostMapping("/interviewHelper")
+	public String interviewHelper(@RequestParam String company,
+			@RequestParam String jobTitle,
+			@RequestParam String strength, 
+			@RequestParam String weakness, Model model) {
+		return "interviewHelper";
+	}
+
+}

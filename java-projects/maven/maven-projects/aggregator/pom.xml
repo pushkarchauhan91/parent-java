@@ -15,11 +15,11 @@
     <description>Demo project for Spring Boot</description>
 
     <modules>
-        <module>author</module>
         <module>books</module>
         <module>interview</module>
         <module>leetcode</module>
         <module>udemy</module>
+        <module>youtube</module>
     </modules>
 
     <properties>

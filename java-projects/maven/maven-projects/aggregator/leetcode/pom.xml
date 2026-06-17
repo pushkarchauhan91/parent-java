@@ -16,6 +16,7 @@
     <modules>
         <module>leetcode-main</module>
         <module>leetcode-practise</module>
+        <module>leetcode-youtube-developer-docs</module>
     </modules>
 
 </project>

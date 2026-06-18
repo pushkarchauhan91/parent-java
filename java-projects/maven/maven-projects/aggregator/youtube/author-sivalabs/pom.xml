@@ -9,14 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>author-javatechie</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>jt-api-versioning</module>
-        <module>jt-rest-client</module>
-        <module>jt-course-ongraphy</module>
-    </modules>
+    <artifactId>author-sivalabs</artifactId>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>

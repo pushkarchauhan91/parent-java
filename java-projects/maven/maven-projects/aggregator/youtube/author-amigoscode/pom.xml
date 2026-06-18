@@ -18,6 +18,7 @@
         <module>amigoscode-java-spring-boot-spring-data-jpa</module>
         <module>amigoscode-java-spring-security</module>
         <module>amigoscode-java-unit-testing-and-integration-testing</module>
+        <module>amigoscode-java-spring-security-crash-course-2026</module>
     </modules>
 
     <properties>

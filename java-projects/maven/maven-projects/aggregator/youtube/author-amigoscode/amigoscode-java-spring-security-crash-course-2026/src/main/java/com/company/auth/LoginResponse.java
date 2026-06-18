@@ -1,0 +1,6 @@
+package com.company.auth;
+
+public record LoginResponse(
+        String token
+) {
+}

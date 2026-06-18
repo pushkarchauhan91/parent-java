@@ -15,6 +15,7 @@
 
     <modules>
         <module>interview-practise</module>
+        <module>interview-main</module>
     </modules>
 
 </project>

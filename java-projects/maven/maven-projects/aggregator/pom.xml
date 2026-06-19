@@ -20,8 +20,7 @@
         <module>leetcode</module>
         <module>udemy</module>
         <module>youtube</module>
-        <module>youtube/author-coding-simplified</module>
-        <module>practise</module>
+        <module>topic</module>
     </modules>
 
     <properties>

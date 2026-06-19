@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.company</groupId>
-        <artifactId>practise</artifactId>
+        <artifactId>topic</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>collection-framework</artifactId>
+    <artifactId>design-patterns</artifactId>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>

@@ -15,9 +15,9 @@
     <properties>
         <java.version>21</java.version>
         <spring-ai.version>2.0.0-M2</spring-ai.version>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>${project-build-sourceEncoding}</project.build.sourceEncoding>
     </properties>
 
     <dependencies>

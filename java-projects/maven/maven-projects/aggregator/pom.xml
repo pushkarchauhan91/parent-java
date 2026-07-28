@@ -25,10 +25,11 @@
 
     <properties>
         <java.version>21</java.version>
-        <lombok.version>1.18.44</lombok.version>
-        <spring-boot-maven-plugin>4.0.3</spring-boot-maven-plugin>
-        <spring-boot-starter-aop>3.5.13</spring-boot-starter-aop>
+        <lombok.version>1.18.46</lombok.version>
+        <spring-boot-maven-plugin>4.1.0</spring-boot-maven-plugin>
+        <spring-boot-starter-aspectj>4.1.0</spring-boot-starter-aspectj>
         <maven-compiler-plugin>3.14.0</maven-compiler-plugin>
+        <project-build-sourceEncoding>UTF-8</project-build-sourceEncoding>
     </properties>
 
     <dependencies>
@@ -78,7 +79,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.1</version>
+                <version>${maven-compiler-plugin}</version>
                 <configuration>
                     <source>{java.version}</source>
                     <target>{java.version}</target>
@@ -86,7 +87,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>1.18.44</version>
+                            <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

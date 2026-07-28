@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.5.10'
+    id 'org.springframework.boot' version '4.1.0'
     id 'io.spring.dependency-management' version '1.1.7'
 }
 
@@ -22,46 +22,44 @@ configurations {
 
 repositories {
     mavenCentral()
-    maven { url = 'https://repo.spring.io/snapshot' }
 }
 
 ext {
-    set('springAiVersion', "1.1.2")
+    springAiVersion = '2.0.0'
 }
 
 dependencies {
-
     // Spring Boot
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    // Spring AI
+    // Spring AI / OpenAI
     implementation 'org.springframework.ai:spring-ai-starter-model-openai'
 
-    // SQL Parser
+    // SQL parser
     implementation 'com.github.jsqlparser:jsqlparser:4.9'
 
     // Database
     runtimeOnly 'org.postgresql:postgresql'
 
+    // Drools
+    implementation 'org.drools:drools-engine:10.1.0'
+    implementation 'org.kie:kie-api:10.2.0'
+    implementation 'org.kie:kie-ci:10.2.0'
+
     // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 
     // Development
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     // Testing
-    testImplementation platform('org.junit:junit-bom:6.0.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    // drools
-    implementation "org.drools:drools-engine:10.1.0"
-    implementation "org.kie:kie-api:10.1.0"
-    implementation "org.kie:kie-ci:10.1.0"
 }
 
 dependencyManagement {

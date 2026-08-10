@@ -30,6 +30,7 @@
         <spring-boot-starter-aspectj>4.1.0</spring-boot-starter-aspectj>
         <maven-compiler-plugin>3.14.0</maven-compiler-plugin>
         <project-build-sourceEncoding>UTF-8</project-build-sourceEncoding>
+        <springdoc-openapi-starter-webmvc-ui>3.0.3</springdoc-openapi-starter-webmvc-ui>
     </properties>
 
     <dependencies>

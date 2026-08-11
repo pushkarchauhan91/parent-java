@@ -1,6 +1,6 @@
 package com.company;
 
-import org.springaicommunity.mcp.annotation.McpTool;
+import org.springframework.ai.mcp.annotation.McpTool;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

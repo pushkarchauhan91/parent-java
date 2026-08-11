@@ -40,7 +40,7 @@ public class McpClientApplication {
                             6. Generate one UUID
                             7. Convert this text to uppercase: spring ai mcp is working
                             """)
-                    .toolCallbacks(mcpToolProvider)
+                    .tools(mcpToolProvider)
                     .call()
                     .content();
 

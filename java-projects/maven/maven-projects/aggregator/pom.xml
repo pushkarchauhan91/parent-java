@@ -28,9 +28,9 @@
         <lombok.version>1.18.46</lombok.version>
         <spring-boot-maven-plugin>4.1.0</spring-boot-maven-plugin>
         <spring-boot-starter-aspectj>4.1.0</spring-boot-starter-aspectj>
-        <maven-compiler-plugin>3.14.0</maven-compiler-plugin>
+        <maven-compiler-plugin>3.15.0</maven-compiler-plugin>
         <project-build-sourceEncoding>UTF-8</project-build-sourceEncoding>
-        <springdoc-openapi-starter-webmvc-ui>3.0.3</springdoc-openapi-starter-webmvc-ui>
+        <springdoc-openapi-starter-webmvc-ui>3.1.0</springdoc-openapi-starter-webmvc-ui>
     </properties>
 
     <dependencies>
@@ -75,6 +75,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-maven-plugin}</version>
             </plugin>
 
             <plugin>
@@ -82,8 +83,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin}</version>
                 <configuration>
-                    <source>{java.version}</source>
-                    <target>{java.version}</target>
+                    <release>${java.version}</release>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>

@@ -1,83 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>com.company</groupId>
         <artifactId>maven-projects</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <artifactId>aggregator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <name>aggregator</name>
     <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <project-build-sourceEncoding>UTF-8</project-build-sourceEncoding>
+
+        <lombok.version>1.18.46</lombok.version>
+        <maven-compiler-plugin>3.15.0</maven-compiler-plugin>
+        <spring-boot-maven-plugin>4.1.0</spring-boot-maven-plugin>
+        <spring-boot-starter-aspectj>4.1.0</spring-boot-starter-aspectj>
+        <springdoc-openapi-starter-webmvc-ui>3.1.0</springdoc-openapi-starter-webmvc-ui>
+    </properties>
 
     <modules>
         <module>books</module>
         <module>interview</module>
         <module>leetcode</module>
+        <module>topic</module>
         <module>udemy</module>
         <module>youtube</module>
-        <module>topic</module>
     </modules>
 
-    <properties>
-        <java.version>21</java.version>
-        <lombok.version>1.18.46</lombok.version>
-        <spring-boot-maven-plugin>4.1.0</spring-boot-maven-plugin>
-        <spring-boot-starter-aspectj>4.1.0</spring-boot-starter-aspectj>
-        <maven-compiler-plugin>3.15.0</maven-compiler-plugin>
-        <project-build-sourceEncoding>UTF-8</project-build-sourceEncoding>
-        <springdoc-openapi-starter-webmvc-ui>3.1.0</springdoc-openapi-starter-webmvc-ui>
-    </properties>
-
     <dependencies>
+        <!-- Spring Boot -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-            <scope>provided</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+
+        <!-- Tracing -->
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-tracing-bridge-brave</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-micrometer-tracing-brave</artifactId>
         </dependency>
+
+        <!-- Lombok -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-micrometer-tracing-test</artifactId>
-            <scope>test</scope>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+
+        <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-micrometer-tracing-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot-maven-plugin}</version>
-            </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -92,6 +103,12 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-maven-plugin}</version>
             </plugin>
         </plugins>
     </build>

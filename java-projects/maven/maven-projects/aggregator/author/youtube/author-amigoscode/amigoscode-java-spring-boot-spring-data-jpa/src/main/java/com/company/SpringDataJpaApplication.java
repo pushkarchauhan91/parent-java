@@ -31,7 +31,7 @@ public class SpringDataJpaApplication {
                     .email("amit.yadav@gmail.com")
                     .gender(Gender.MALE)
                     .build();
-            List students = new LinkedList<>();
+            List<Student> students = new LinkedList<>();
             students.add(pushkar);
             students.add(amit);
             studentRepository.saveAll(students);

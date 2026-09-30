@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.company</groupId>
-        <artifactId>maven-aggregator</artifactId>
+        <artifactId>aggregator</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
@@ -16,7 +16,6 @@
     </modules>
 
     <properties>
-        <maven.compiler.release>${java.version}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

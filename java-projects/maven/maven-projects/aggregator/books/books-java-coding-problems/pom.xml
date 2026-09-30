@@ -12,22 +12,8 @@
     <artifactId>books-java-coding-problems</artifactId>
 
     <properties>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot-maven-plugin}</version>
-                <configuration>
-                    <mainClass>com.company.Main</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

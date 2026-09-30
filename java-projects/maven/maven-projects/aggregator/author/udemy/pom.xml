@@ -5,15 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.company</groupId>
-        <artifactId>leetcode</artifactId>
+        <artifactId>aggregator</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>leetcode-main</artifactId>
+    <artifactId>udemy</artifactId>
+    <packaging>pom</packaging>
 
-    <properties>
-        <maven.compiler.release>${java.version}</maven.compiler.release>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <modules>
+        <module>author-bharath</module>
+        <module>udemy-low-level-system-design</module>
+        <module>author-chad-darby-luv2code</module>
+    </modules>
 
 </project>

@@ -5,15 +5,21 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.company</groupId>
-        <artifactId>leetcode</artifactId>
+        <artifactId>maven-aggregator</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>leetcode-main</artifactId>
+    <artifactId>author</artifactId>
+    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <modules>
+        <module>udemy</module>
+        <module>youtube</module>
+    </modules>
 
 </project>

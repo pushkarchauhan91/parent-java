@@ -11,10 +11,6 @@
 
     <artifactId>jt-002-dependency-injection</artifactId>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <!--		<dependency>-->
         <!--			<groupId>org.springframework.boot</groupId>-->
@@ -29,7 +25,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
-            <version>4.1.0</version>
         </dependency>
     </dependencies>
 

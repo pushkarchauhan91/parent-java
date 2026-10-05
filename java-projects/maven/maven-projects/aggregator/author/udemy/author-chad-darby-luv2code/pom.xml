@@ -18,8 +18,4 @@
         <module>spring-boot-rest-apis-04</module>
     </modules>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
 </project>

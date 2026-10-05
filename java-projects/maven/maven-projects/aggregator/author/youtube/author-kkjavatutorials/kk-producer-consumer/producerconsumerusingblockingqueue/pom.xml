@@ -11,7 +11,6 @@
 
     <artifactId>producerconsumerusingblockingqueue</artifactId>
 
-
     <build>
         <plugins>
             <plugin>

@@ -11,16 +11,11 @@
 
     <artifactId>dcb-master-gen-ai-with-java-and-spring-boot</artifactId>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot-maven-plugin}</version>
                 <configuration>
                     <mainClass>com.company.Main</mainClass>
                 </configuration>

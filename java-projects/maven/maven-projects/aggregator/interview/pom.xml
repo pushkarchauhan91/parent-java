@@ -16,6 +16,7 @@
     <modules>
         <module>interview-practise</module>
         <module>interview-main</module>
+        <module>bookstore-inventory</module>
     </modules>
 
 </project>

@@ -12,7 +12,25 @@
     <artifactId>author-bharath</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>udemy-bharath-claude-code-for-java-spring-boot</module>
+        <module>udemy-bharath-core-java-made-easy</module>
+        <module>udemy-bharath-devops-tools-and-aws</module>
+        <module>udemy-bharath-java-design-patterns</module>
+        <module>udemy-bharath-java-interview-help</module>
+        <module>udemy-bharath-java-logical-programs-data-structure</module>
+        <module>udemy-bharath-java-web-services</module>
+        <module>udemy-bharath-java-web-services-2-soap-rest-security</module>
+        <module>udemy-bharath-jms-fundamentals</module>
+        <module>udemy-bharath-junit-and-mockito</module>
+        <module>udemy-bharath-kafka-fundamentals</module>
+        <module>udemy-bharath-project-development-using-spring-boot</module>
+        <module>udemy-bharath-rest-api-using-spring-data-rest</module>
         <module>udemy-bharath-spring-ai</module>
+        <module>udemy-bharath-spring-boot-fundamentals</module>
+        <module>udemy-bharath-spring-cloud-fundamentals</module>
+        <module>udemy-bharath-spring-data-jpa-using-hibernate</module>
+        <module>udemy-bharath-spring-framework-in-easy-steps</module>
+        <module>udemy-bharath-spring-security-fundamentals</module>
     </modules>
 
 </project>

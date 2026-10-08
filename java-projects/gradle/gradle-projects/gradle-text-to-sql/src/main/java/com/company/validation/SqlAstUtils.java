@@ -3,7 +3,10 @@ package com.company.validation;
 import net.sf.jsqlparser.expression.ExpressionVisitorAdapter;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.statement.Statement;
-import net.sf.jsqlparser.statement.select.*;
+import net.sf.jsqlparser.statement.select.Limit;
+import net.sf.jsqlparser.statement.select.PlainSelect;
+import net.sf.jsqlparser.statement.select.Select;
+import net.sf.jsqlparser.statement.select.SelectItem;
 import net.sf.jsqlparser.util.TablesNamesFinder;
 
 import java.util.HashSet;
@@ -14,9 +17,7 @@ public class SqlAstUtils {
 
     public static Long extractLimit(Select select) {
 
-        Select body = select.getSelectBody();
-
-        if (body instanceof PlainSelect plainSelect) {
+        if (select instanceof PlainSelect plainSelect) {
             Limit limit = plainSelect.getLimit();
             if (limit != null && limit.getRowCount() != null) {
                 return Long.parseLong(limit.getRowCount().toString());
@@ -27,31 +28,23 @@ public class SqlAstUtils {
     }
 
     public static Set<String> extractTables(Select select) {
-        TablesNamesFinder finder = new TablesNamesFinder();
-        return new HashSet<>(finder.getTableList((Statement) select));
+        return new HashSet<>(new TablesNamesFinder<>().getTables((Statement) select));
     }
 
     public static Set<String> extractColumns(Select select) {
         Set<String> columns = new HashSet<>();
 
-        select.getSelectBody().accept(new SelectVisitorAdapter() {
-            @Override
-            public void visit(PlainSelect plainSelect) {
-                for (SelectItem item : plainSelect.getSelectItems()) {
-                    item.accept(new SelectItemVisitorAdapter() {
-                        @Override
-                        public void visit(SelectItem expressionItem) {
-                            expressionItem.getExpression().accept(new ExpressionVisitorAdapter() {
-                                @Override
-                                public void visit(Column column) {
-                                    columns.add(column.getColumnName());
-                                }
-                            });
-                        }
-                    });
-                }
+        if (select instanceof PlainSelect plainSelect) {
+            for (SelectItem<?> item : plainSelect.getSelectItems()) {
+                item.getExpression().accept(new ExpressionVisitorAdapter<Void>() {
+                    @Override
+                    public <S> Void visit(Column column, S context) {
+                        columns.add(column.getColumnName());
+                        return null;
+                    }
+                });
             }
-        });
+        }
 
         return columns;
     }

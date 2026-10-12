@@ -10,5 +10,11 @@
     </parent>
 
     <artifactId>udemy-bharath-spring-data-jpa-using-hibernate</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>udemy-bharath-product-data</module>
+        <module>udemy-bharath-id-generator</module>
+        <module>udemy-bharath-jpaql-and-native-sql</module>
+    </modules>
 
 </project>

@@ -25,6 +25,7 @@
         <module>udemy-bharath-java-design-pattern-proxy</module>
         <module>udemy-bharath-java-design-pattern-singleton</module>
         <module>udemy-bharath-java-design-pattern-template-method</module>
+        <module>udemy-bharath-java-design-pattern-iterator</module>
     </modules>
 
 </project>

@@ -1,0 +1,55 @@
+In this lecture I will introduce you to Java Reflection.
+
+Reflection is an API using which we can inspect and modify the behavior of a class dynamically at runtime.
+
+Using Reflection we can create an object of a class dynamically, invoke the methods on it and even access
+
+the private fields on an object directly without using their setter methods. It's that powerful. In the initial
+
+days of Java where there are not many frameworks like Spring, Hibernate, etc,
+
+we had to write a lot of reflection code.
+
+But as these frameworks evolved, the frameworks started using them and we started using those frameworks.
+
+For example, JUnit, Hibernate, Spring and all the application servers internally use Reflection to do
+
+what they do.
+
+For example, the JUnit framework
+
+is a testing framework, unit testing framework.
+
+It will scan through the test classes we create, it will try to find all the methods that are marked
+
+with @Test annotation and it will execute those methods and return the test results.
+
+Similarly, Hibernate is a ORM, Object Relational Mapping tool that can execute, create and execute
+
+SQL queries against a database table,
+
+fetch the results and create instances of our Java objects dynamically at runtime using Reflection, and
+
+set the results that came back from the database into that object.
+
+Spring is a dependency injection framework. As the name itself says, it can create,
+
+if two classes depend on each other, Spring can create the instances of the dependent classes dynamically
+
+using Reflection and it will inject them into the class that needs it.
+
+And servers like Apache Tomcat, JBoss, etc,
+
+as you start working on the web applications using Java, these
+
+servers can dynamically instantiate the servlet classes you create using Reflection and invoke the lifecycle
+
+methods on them.
+
+And a realtime usage of Reflection is Annotations. If you are creating custom annotations in your application
+
+which you want to use at runtime or you want to access at runtime,
+
+then you can access those annotations using the Reflection API as you will learn in lectures later on,
+
+and write custom code that should be executed when those Annotations are used.

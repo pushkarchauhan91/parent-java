@@ -1,0 +1,51 @@
+
+What is object oriented programming? If you look around yourself you already know the answer. It is right
+
+now you are using your computer or some other gadget which in turn uses the router
+
+through a wifi or a direct connection to access this course.
+
+An other example, when you access your ATM, you as an object will access the object ATM which in turn uses
+
+another object called the banking server.
+
+So this world is full of objects and communication between them.
+
+If we take real life example of two persons John and Mary,
+
+they have certain properties like age, weight and qualification and they perform certain functions like
+look and speak.
+
+They can also perform many other functions like playing games and teaching.
+
+So at any given point in time these objects can have three things.
+One is the identity or name, two properties and variables
+and finally functionality and behavior.
+
+So objects will communicate with each other using the functionality or the methods.
+
+And when they do that communication they exchange these properties or variables, the information is
+
+exchanged in the form of properties and variables. Java is a object oriented programming language.
+
+The main advantage of object oriented programming language is that it's very easy to map the real world
+
+problems to the software solutions.
+
+For example, if we are working on a online shopping application can you tell me all the objects you
+
+can think of when we talk about online shopping application? It could be customer,order, product, address
+
+payment, shopping cart and so on.
+
+So all these objects in the real world shopping application can be easily represented in an object oriented
+language like Java.
+
+Similarly if we consider a Hospital Management software or application, can you think of the objects? Yep!
+
+Patient, an appointment with the doctor and the doctor itself or himself, herself, prescription and then
+
+the billing information at the end of it ofcourse, they will bill you for sure.
+
+So all these objects once again, can be easily mapped to the programming language and we can easily develop
+a software solution using the Object Oriented Programming.

@@ -1,0 +1,20 @@
+In this section, you will learn and use the various flow control statements. Flow control describes the order
+
+in which the statements will be executed at runtime.
+
+They are categorised into three sections, selection statements, iterative statements and finally transfer
+
+statements. Under selection statements
+
+we have the if-else block and the switch statement. Under iterative statements or looping statements
+
+we have while, do-while, for and for-each. Under transfer we have break, continue, return, try-catch-finally and assert.
+
+The selection statements help us do conditional execution.
+
+The iterative statements help us loop through and execute the same code multiple times.
+
+The transfer statements, as the name itself says transfers the execution from one point in our code to
+an other point.
+
+You will learn a lot of these in this section and some of them in sections later on.

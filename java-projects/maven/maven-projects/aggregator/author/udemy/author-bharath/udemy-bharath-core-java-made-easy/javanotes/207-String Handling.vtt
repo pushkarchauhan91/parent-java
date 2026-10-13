@@ -1,0 +1,16 @@
+Strings are a bunch of characters.
+
+For example, in name like Bharath or an awesome quotation such as, You are the creator of your destiny.
+
+In Java, these strings are represented as objects of the class String. The String class belongs to
+
+java.lang
+
+package. It provides various useful methods like length which will tell us the number of characters in
+
+the string,
+
+concat, which can concatenate two strings, split, which can split the string into multiple tokens or strings
+
+given a delimiter. There are several other useful methods on the String which you will be exploring
+in the lectures later on.

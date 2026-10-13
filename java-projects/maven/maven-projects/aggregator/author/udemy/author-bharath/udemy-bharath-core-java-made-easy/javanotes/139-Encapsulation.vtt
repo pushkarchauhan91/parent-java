@@ -1,0 +1,29 @@
+In the very first section you have learnt that encapsulation is the process of binding the data and
+
+code together or properties and methods together so that only those methods can access those properties.
+
+For example, if I have a Customer class to implement encapsulation, we will first mark all the fields on
+
+that class as private, so that no other class can directly access those fields.
+
+We then define the accessor methods called getter methods and setter methods for each field.
+
+These methods are public. In order to set the credit card information here to a value,
+
+the other classes will have to invoke the setCreditcard method on the Customer object and pass in a
+
+creditcard.
+
+Similarly if they want to get the value of the creditcard, they'll have to invoke the getCreditcard method.
+
+They can't directly use the creditcard.
+
+That is how we achieve encapsulation.
+
+There are two major advantages of encapsulation.
+
+Number one is secured security.
+
+Number two, easy enhancements.
+
+I'll talk more about it when you implement this encapsulation handson in the next lecture.

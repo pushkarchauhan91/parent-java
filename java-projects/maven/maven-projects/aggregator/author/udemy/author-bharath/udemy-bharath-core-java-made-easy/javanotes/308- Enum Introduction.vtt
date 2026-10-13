@@ -1,0 +1,55 @@
+If you want to represent a group of named constants in our application, then we use Enums. Enums were introduced
+
+in Java 1.5.
+
+First let's work on it handson and then I'll explain you the concepts of an Enum. Go to Eclipse,
+
+create a new Java project. Call it Enums. To create an Enum, you are going to create an Enum that represents
+
+the databases your application supports.
+
+Let's say you are a lead or an architect on an application and you want to restrict all the developers
+
+to use certain constants when they are using databases. That is, you want to support only three databases
+
+in our application.
+
+So New, Eclipse has support for Enums, Enums, DatabaseTypes.
+
+Or you can simply say Databases, finish. To create an Enum,
+
+we use the keyword Enum and within that you can define all the constants, MYSQL,ORACLE,SQLSERVER.
+
+And you'll tell all the developers that wherever they are using constants or whether they need databases
+
+they should only use this particular Enum. You will learn how to use it in the next lecture.
+
+But in this, right here when you define this Enum internally this Enum is represented as a class. And all
+
+these constants are references or objects of that particular class and implicitly they are public static
+
+and final.
+
+So you can access these simply by using the name of this particular Enum. And every Enum
+
+internally, it extends an abstract class called Enum from java.lang package.
+
+We need not define it.
+
+It automatically extends the Enum class.
+
+And so you cannot extend any other classes when you create an Enum. But you can implement, if you want
+
+to we rarely do it.
+
+But if you want to you can implement several interfaces here.
+
+So to summarize, an Enum allows us to represent a group of named constants in our application. Internally
+
+an Enum is nothing but a class and all the constants we define are objects or references of that particular
+
+class.
+
+They are public static final by default. Since every Enum class extends the class called Enum from java.lang
+
+package. It cannot extend any other classes.

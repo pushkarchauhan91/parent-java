@@ -1,0 +1,67 @@
+In this and the next few lectures you will learn what exceptions are and how to handle them.
+
+In the process of compiling and executing a program we see three types of errors.
+
+They are compile time errors,
+
+logical errors.
+
+and finally run time errors. Compile time errors are not new to you.
+
+You have already seen it through out the course.
+
+If we do not follow the syntactical rules that a particular programming language compiler defines, then
+
+we see compile time errors. In case of Java some examples are cannot find a symbol.
+
+If we try to use a variable that is not even declared then we see this error. Incompatible types happens
+
+if we try to use two different variables of two different types
+
+without typecasting.
+
+Invalid method signature,
+
+if we do not use the return type or if something is wrong with the method signature. 'this', the variable
+
+'this' cannot be used inside a static context.
+
+We see this if we try to use 'this' in main method or static context like a static block or a static method.
+
+Logical errors happen
+
+if we as a programmer do some mistakes and the expected output will be different from what we intended
+
+it to be.
+
+For example, we define a variable
+
+i as 567.
+
+We then typecast it to a byte and we are expecting a result which will be 567*14 but that will
+
+not be the expected result. As you have learnt in the typecasting section byte can only carry up to 256.
+
+So this will result, this statement, the second statement will result in b
+
+holding a value of 11. And this will be 11*14 and not 567*14.
+
+This is a logical error.
+
+Finally runtime errors or exceptions.
+
+These happen at runtime because of several reasons and these will cause our program to terminate abruptly.
+
+And the end user will see an unfriendly or informal message which he can't make sense out of.
+
+Finally, improper shutdown of resources. If our program is connecting to a database
+
+or if it is reading a file or writing to a file, those resources will not be closed
+
+if an exception is thrown. That is the reason we need to handle these exceptions. In Java an
+
+exception is a class. Whenever an exception happens
+
+the JVM will create an instance of a class and it will throw that exception.
+
+There are predefined exceptions as well as we can create our own exception classes.

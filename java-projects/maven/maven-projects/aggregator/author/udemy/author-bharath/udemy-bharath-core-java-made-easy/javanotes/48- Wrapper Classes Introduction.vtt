@@ -1,0 +1,31 @@
+Wrapper classes help us convert primitive types to object types. We need this mainly when we work with
+
+collections API later on. The collection classes only work with object types and not primitive types.
+
+Each primitive type has a corresponding class.
+
+The instance of this class will represent that particular type as a
+
+object byte. byte has Byte, short has Short, int has Integer and not int class, long Long, float Float, double Double,
+
+char Character and boolean,
+
+its Boolean class.
+
+So the objects of these classes represent the primitive types.
+
+So using these wrapper classes we can accomplish the following things.
+
+We can convert a primitive to object. This is called guard boxing.
+
+We can convert back an object to a
+
+primitive. This is called unboxing. Primitive to a string, string is the set of characters.
+
+You will be walking with strings and doing a lot of work on it later on.
+
+So primitive to string conversion is possible, string to primitive conversion.
+
+Object to string and finally string to an object.
+
+So you'll be seeing all these in action in the next few lectures.

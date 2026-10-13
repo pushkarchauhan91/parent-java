@@ -1,0 +1,123 @@
+In this lecture I will introduce you to Java annotations. Java annotations were first introduced in version
+
+1.5. They are metadata or special symbols
+
+which start with @ symbol followed by the annotation name. We can use these on our classes, fields and methods.
+
+And when we use these annotations, they add special meaning to them.
+
+For example here, the Patient class is marked with @Entity annotation.
+
+The field id is marked with @Id annotation and the method findAll is marked with @Query annotation. When you
+
+use advanced frameworks like Java Persistance API and Hibernate,
+
+you will see that when you mark your classes and methods with these annotations, those frameworks will
+
+scan through your class and they can automatically convert the objects of your class into database rows
+
+without you creating a single line of SQL.
+
+So you can get rid of a lot of XML configuration by simply using annotations.
+
+That's a major advantage of annotations.
+
+And also if we have any duplicate code across our application we can put all that behind a single annotation
+
+and start using that annotation everywhere.
+
+There are three types of annotations or annotations can be used for compile time, build time as well as runtime.
+
+So the Java compiler will scan through our Java classes and make use of the annotations,
+
+some of the annotations which are meant for compile time. We can also have annotation and retain them for
+
+build time instead of just compile time so that build tools like ANT, Gradle, Maven can scan through
+
+our classes and generate some artifacts. It could be XML, it could be another Java class,
+
+we can do whatever we want by using annotations and build tools can scan through them and generate other things
+
+for us.
+
+Similarly we can retain the annotations on our classes even in the compiled code so that they
+
+can be used at runtime as well. We can process them during runtime as well.
+
+JDK comes with several annotations. For example, the @Deprecated annotation can be used to mark our classes,
+
+methods, fields as deprecated. Meaning nobody should be using them and they should use an other API or
+
+an other field or another method instead.
+
+It is still there so that we maintain backward compatibility but they should stop using it
+
+going forward, that's what @Deprecated means.
+
+Similarly @Supresswarnings does the opposite.
+
+If for some reason you have no other alternative but if you have to use something deprecated
+
+and if you don't want the warnings to show up in your code, then you use the @Supresswarnings annotations
+
+at that piece of code in your application.
+
+@Override is another annotation which when you mark your subclass methods with, when you override some methods and
+
+you use this annotation on your subclass method,
+
+it will ensure that the method is really being overridden. That is the signature of your child class
+
+method
+
+matches the signature of the parent class method. If not the compiler will throw an error right away.
+
+So you'll be trying out all these annotations in the next few lectures.
+
+Also annotations can carry values or they can simply be marker annotations. For example @Test is an
+
+annotation from JUnit framework which is a unit testing framework for Java. When you mark your test
+
+methods with this,
+
+it tells the JUnit framework that that particular method is a test method.
+
+Similarly, we have @Before, @After and several other JUnit annotations. All these are called marker
+
+annotations.
+
+They don't take any parameters.
+
+And here is an example where annotations can take attributes.
+
+That is, you can consider them as parameters but they're really values that get passed to
+
+this particular annotation.
+
+Here is a @WebService annotation which you use, if you have taken my Java web services course, then you would've used
+
+this. You can configure the end point of your web service, the service name, etc, by passing values to
+
+it. If the annotation has only one single value,
+
+you can pass it using value="myvalue" or directly the value.
+
+But if it has multiple values then you need to use the names for sure,
+
+like here on the @WebService annotation. You can also create your own annotations.
+
+I will show you how to do that in lectures later on.
+
+So to summarize, annotations are metadata. They start with a @ symbol followed by the name
+
+and we can use them on classes, fields, methods, etc. We can have them at compile time or for build time or for
+
+runtime, it's called the retention policy.
+
+I will show you what that is later on. The inbuilt
+
+annotations like @Deprecated, @Supresswarnings, @Override can be used, they come with the JDK. And annotations
+
+can also take values. It could be single or multiple values.
+
+And also we can create our own annotations.

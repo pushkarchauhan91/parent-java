@@ -1,0 +1,51 @@
+Arrays are a group of elements of homogeneous types or similar data types. We can store primitive
+
+types as well as objects in an array. For example,
+
+here is a integer array that can store 5 integer values in it. Arrays in Java are objects.
+
+a, here is an object that will point to the first element's memory location which is 2000
+
+in this case and we access the array elements using the index of the element which starts with 0 for the first
+
+element, 1, 2, 3, 4 and so on.
+
+Once the JVM knows the first memory location it's very easy for it to go to any memory location or to
+
+any array element.
+
+For example, when we are trying to access the 4th element using a[3] which is 40 in this case, the
+
+JVM can do a simple calculation of 2000 which is the first element's memory location, plus
+
+the index 3*, the size of integer in this case, because it's of int type.
+
+So this calculation will result into 2000 plus 3*, integer takes 4 bytes,
+
+so 4. And that will result in 2012 being the memory location where this 40 is stored.
+
+So based on the data type this number here can change from 4 to 8 or 2. But this is a very simple calculation
+
+the JVM can internally use to jump from one location to other to access the array elements. So accessing
+
+the elements is very easy and fast using an array, but inserting or deleting an element is slow.
+
+Because if we insert an element, let's say here in between this 1 and 2, we'll have to move these
+
+elements to the left and also to the right.
+
+Or if we delete an element 20 here, then we'll have to rearrange the rest of the elements in the array.
+
+That is why deleting and insertion is time consuming. And also arrays are static. Meaning, once the memory
+
+is allocated for an array at runtime, it cannot be changed, it cannot be increased. But collections,
+
+when you learn collection classes later on you will see that runtime dynamically you can grow the collection.
+
+Here in this array,
+
+once you define it like this you cannot add an element 60 later on.
+
+You can only put it in one of these memory locations but you cannot extend this array.
+
+But it is possible with collection classes which you will learn later on.

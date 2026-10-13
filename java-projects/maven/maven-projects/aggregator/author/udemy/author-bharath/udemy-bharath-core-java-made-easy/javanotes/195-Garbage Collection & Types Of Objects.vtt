@@ -1,0 +1,53 @@
+What is garbage collection? In Java each thread starting with the main method thread has stack space
+
+where all the local primitive types are stored and the heap space where the objects are allocated the
+
+memory. All the references will point to these memory locations on the heap.
+
+The process by which the Java Virtual Machine automatically clears the memory allocated to a particular
+
+object is called garbage collection.
+
+The garbage collector is a demon thread that runs within the JVM in the background and garbage collects
+
+the objects when they are unreachable.
+
+Let's see what unreachable means by looking at an example of an account.
+
+We have an Account class and two instances of this Account class, x and y.
+
+So the memory is allocated on the heap and this x and y point to that memory locations.
+
+Now if we say x = new Account(); again the object 1 here will become unreachable because x
+
+will now point to a new memory location on the heap.
+
+y still points to object 2. So the object 1 is unreachable and the garbage collector thread, if it
+
+runs at this point it can garbage collect this.
+
+Now if we say y = x; both 1 and 2 are unreachable.
+
+And now if the garbage collector runs, it can clear up both these objects.
+
+Finally if we say x = null; and y = null; all the objects on the heap are unreachable.
+
+And if the garbage collector hasn't run yet and if it runs now, it can garbage collect all
+
+these three objects.
+
+It's up to the JVM,
+
+when the garbage collector will run and clean up objects. Although they are not, although they are
+
+unreachable, they might not be cleared right away.
+
+Whenever the garbage collector runs, it will clear them up. Two things to remember, we cannot force the
+
+garbage collector to run but we can always request and recommend and request the JVM to run the garbage
+
+collection by calling System.gc() method. To summarize,
+
+Garbage collection is a process by which a demon thread, the garbage collector thread will clear up the unreachable
+
+objects on the heap.

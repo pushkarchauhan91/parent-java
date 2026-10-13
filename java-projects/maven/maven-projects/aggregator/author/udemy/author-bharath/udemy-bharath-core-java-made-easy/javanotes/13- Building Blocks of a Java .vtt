@@ -1,0 +1,59 @@
+
+There are four building blocks that make any Java application or program. They are class, variables, methods
+
+and blocks. No matter how many Java classes or programs you write, you will only find these four. In any Object oriented programming language,
+
+every object is represented by a class.
+
+All the code that we put, whether there are variables, methods or blocks will go inside this class.
+
+In an application, every class should have an unique identity or name. These variables and methods can
+be static and non-static.
+
+More on this later.
+
+Variables are identities that we give to a memory location or locations, where our data is stored.
+
+For example, here I have data 100 in the memory location 145672.
+
+
+Instead of using the memory location in our programs, we declare variables like the a, xyz, username, account
+number,etc; and we use them throughout our program.
+
+
+So these variables point to a memory location where data is stored.
+
+
+The syntax for defining a variable is, data_type, the name or identity for that variable followed by a
+
+semi colon.
+
+Or you can even initialize that variable as you'll learn later on. An example, int a = 100;
+
+
+Variables could be both static as well as non-static.
+
+
+For example, let's say we are working on a banking application. Non-static variables on a bank account
+
+
+would be account number. For example 123 and 456 or two different account numbers and balance, each account
+
+
+will have its own balance, 5000 in one account and 10000 in one account.
+
+
+So non-static variables are different for each object. They are object level variables.
+
+
+Each object will have its own values for the non-static variables. Whereas static variables, for example
+the bank name is common.
+
+Let's say we are developing this application for Chase Bank.
+Then the banks name would be Chase, which is common across accounts.
+
+So this is static.
+
+So if something is common across object instances then it is static or class level variable.
+
+And if each object has its own values, then they are called non-static variables.

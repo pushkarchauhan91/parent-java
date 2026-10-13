@@ -1,0 +1,67 @@
+In this lecture, you will implement single inheritance. To do that go to the Eclipse IDE.
+
+Let's create a new Java project by going to the File menu ->
+
+New -> Java project. Call it inheritance, finish.
+
+Create a new class by going to the src folder, right click on it, say New -> Class, SingleInheritance.
+
+If you observe the Superclass option here below the name and modifiers, it says java.lang.object.
+
+Every class that you have been writing so far in this course, implicitly has been extending a class called
+
+java.lang.object.
+
+There is a reason for it.
+
+Because this class has several useful methods about which you will learn in sections later on.
+
+As soon as I hit the finish button, I have already implemented single inheritance because the compiler when
+
+this class is compiled adds something like extends object. This object
+
+is from java.lang package which is available for every class in Java.
+
+We need not put this explicitly.
+
+Even if I remove this, the compiler will put it for us.
+
+So to implement single inheritance
+
+there is not much we need to do. To prove that every class is extending java.lang.object,
+
+let's add a method void m1(). Sysout, Inside m1.
+
+Now add a main method. main,
+
+Enter. Create an instance of our SingleInheritance class, s is equal to new SingleInheritance.
+
+s.m1();
+
+There is no magic in there.
+
+It's straight forward.
+
+But now s.hashCode();
+
+s.finalize(); Let's not
+
+use that. You'll learn more about finalize later on. s.getClass(); etc.
+
+So all these methods,
+
+we don't have implementation for it in our class but we are able to access them because our class extends
+
+java.lang.object implicitly and that is where all these methods are written,	
+
+java.lang.object.hashcode. If I try to access s.m2()
+
+which is not there. You'll see
+
+a compilation error immediately.
+
+But we are able to access these because they're present on java.lang.object.
+
+So in this lecture, you have learnt that implicitly every class in Java implements single inheritance
+
+by extending the java.lang.object.

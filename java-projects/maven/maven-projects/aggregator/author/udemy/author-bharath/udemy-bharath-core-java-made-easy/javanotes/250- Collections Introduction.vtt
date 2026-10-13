@@ -1,0 +1,141 @@
+In this lecture, I will introduce you to the Java collections framework.
+
+By the end of it, you will know what it is and the key interfaces and classes.
+
+When we build dynamic Java applications we don't just deal with a static number of objects. We'll be having
+
+a lot of objects that are loaded into the application. The client sends in some data,
+
+we store it into a data store and then we retrieve it back and represent it in memory as Java objects.
+
+For example for Facebook,
+
+this could be the user profile objects. For Gmail,
+
+it could be the list of emails of that particular user.
+
+So these group of objects can represent different things depending on different applications. And their
+
+size keeps growing.
+
+For example, if it's a online ticketing reservation system we might have a number of passengers accessing
+
+our websites whose objects we need to load into memory.
+
+That is where the collections framework comes in and it provides us with interfaces, classes and methods
+
+that are ready to use to store these objects
+
+and manipulate them. Unlike arrays, collection classes and their objects are dynamic.
+
+That is they can grow in size dynamically at runtime.
+
+The Collection interface in the java.util package is the key parent interface which is implemented
+
+by three interfaces list, set and queue. All these three are data structures that allow us to store and manipulate
+
+objects. But each one of them have slightly different functionality. List allows duplicate objects, set
+
+does not allow duplicate objects as you would have learnt in mathematics.
+
+Queue is a first in first out data structure.
+
+That is, whatever object we store first,
+
+when we retrieve something that will be the first object that comes out.
+
+Two key implementations of list are ArrayList and LinkedList classes.
+
+You will be learning the differences between them and when to use which in lectures leter on. Set does
+
+not allow duplicates that is implemented by a class called HashSet
+
+It has a child interface called SortedSet. The HashSet in turn is implemented by another class with the
+
+special functionality called LinkedHashSet. A LinkedHashSet maintains the order of elements which we add
+
+into it.
+
+So it will maintain the same exact order in which we put the elements into it. Wherever you see the linked
+
+word you can take it that, that particular collection maintains the order of objects in which we added
+
+to the data structure.
+
+It's not the sorting order like ascending or descending, but the order in which we add the objects. On
+
+the other hand the SortedSet is implemented by a class called TreeSet.
+
+SortedSet is a child interface of the set and it is implemented by TreeSet. Wherever you see the word tree in
+
+a collection,
+
+you can take it for granted that it's going to sort the objects that we store into it,
+
+either ascending ot descending. More about that later on. PriorityQueue is the class that implements the Queue
+
+interface.
+
+You can also use the LinkedList as a Queue. LinkedList interface class implements both the list as well as
+
+the queue.
+
+It acts as a queue as well.
+
+Vector is a legacy class. We rarely touch it because all the methods on a Vector are synchronized.
+
+So if you use a Vector in a multi-threaded application, each object has to use the Vector one at a time
+
+because all the methods are synchronized
+
+or the performance will suck.
+
+So we rarely touch the Vector class.
+
+Sometimes we need to store information as key value pairs.
+
+For example, here is a information. 123 is the order id and this is the order object. And
+
+we'll have various scenarios where we need a key and value pairs.
+
+It could be the database username and password, database connection URL, etc.
+
+That is where we use a map in Java collections. A map interface is implemented by HashMap. Map is the parent
+
+interface in java.util package. HashMap is a popular implementation which uses hashing that will be explained
+
+later on.
+
+And a SortedMap is a child interface of the map. LinkedHashMap is a child class of HashMap.
+
+When you see the linked word, you know that it maintains the order in which we put the elements into it.
+
+SortedMap is implemented by a TreeMap.
+
+If we have the word tree, that means it's going to sort the objects which we put into it. Another
+
+legacy class that we have here is a HashTable that implements a map.
+
+It is very similar to HashMap but all the methods on a HashTable are synchronized.
+
+So in a multi-threading environment, again we shouldn't be using a HashTable. Most of the Java applications
+
+out there are multithreaded, so we rarely touch the HashTable and Vector classes. They are considered
+
+as legacy. To quickly summarize, the Java collections API provides us a way to store and manipulate a
+
+group of objects and they can grow, these data structures can grow dynamically at runtime as the number
+
+of objects increase. List, set and queue are the key interfaces.
+
+If we learn these interfaces and the methods then you need not really worry about the child classes
+
+because it's all runtime polymorphism.
+
+Similarly, if we learn the methods available on map, all the maps internally they are implemented different.
+
+We don't care about the implementation.
+
+We only care about the methods and adding data into it,
+
+adding objects, retrieving objects and manipulating it.

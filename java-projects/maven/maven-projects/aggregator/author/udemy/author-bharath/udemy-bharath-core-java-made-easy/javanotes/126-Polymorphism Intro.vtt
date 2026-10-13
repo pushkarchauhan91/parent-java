@@ -1,0 +1,13 @@
+In this lecture, you'll learn what polymorphism is. Poly means multi and morphic means shapes.
+
+So if a object can take multiple shapes then it is called polymorphic.
+
+But in the case of object oriented programming this shapes stand for behavior.
+
+So if an object of a class can behave differently while communicating with different objects, then that
+
+is polymorphism. There are two types of polymorphism in Java,
+
+Compile time polymorphism or Static binding, Runtime polymorphism or Dynamic binding.
+
+You will implement both of these in the next few lectures.

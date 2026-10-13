@@ -1,0 +1,11 @@
+In this lecture, you will learn what the four Object Oriented Principles are.
+
+They are encapsulation, inheritance, abstraction and polymorphism. These features are common across object
+
+oriented languages like C++, Python, C Sharp and not just Java.
+
+We can implement the functionality of these features in any of these programming languages using classes and objects.
+
+You'll learn the theory around these four features in the next few lectures and you will implement them
+
+when you work on the handson lectures later on.

@@ -1,0 +1,139 @@
+When we work with traditional collection classes like Array list, Hash set, Hashmap, in a multithreaded context,
+
+will have  to use synchronization to achieve thread safety on these collections, whether it is a list,
+
+set or map, a particular thread, axing this collection should attain the lock through synchronization
+
+so that no other thread will be able to access that collection as long as the thread is using it.
+
+Only when it releases the lock that the threads will be able to access and manipulated.
+
+This can degrade the applications performance as multiple threads fight for the collections lock.
+
+That is one issue.
+
+Secondly, these traditional collection classes like Array List and Hash set implement fail fast iterators.
+
+That is, when we get it iterator  out of this collection and loop through the list or set of objects.
+
+If we try to manipulate the list at the same time by adding or removing the element will get a concurrent
+
+modification exception.
+
+So we have two issues.
+
+One is that once the thread attains a lock on the collection, then the entire  collection is locked and nobody,
+
+no other thread will be able to access the collection.
+
+Secondly, if we are looping through and accessing the collection using Iterator and if we try to manipulate
+
+that collection, add or remove elements at the same time, we get a concurrent modification exception.
+
+Even in a single threaded environment, you will see this concurrent modification exception, as we
+
+will see in the next lecture.
+
+That is where the concurrent collections that were first introduced in java  one point five come to the
+
+rescue.
+
+In the next few lectures, you are going to use some of these concurrent collection classes, starting
+
+with copy on write array  list and copy on write at a Array set 
+
+As the name itself says, when we use a copy on write, array list or copy on write, array  set.
+
+These are child classes of list and set respectively.
+
+They follow all those rules of list and set.
+
+And at the same time, if one thread is accessing a particular list, copy On write  array list are set and
+
+another thread is trying to manipulate that list by adding or removing elements.
+
+At the same time, a copy of this entire list will be created and that modification will happen on that
+
+copy and not on the original list or set.
+
+That is how the copy on Array list and Array set works.
+
+So if we have multiple threads accessing a particular copy Array blist or Set  well, one thread
+
+is reading.
+
+If another thread tries to manipulate it in parallel, it is possible it is not locked.
+
+Multiple threads can access the same list, but as soon as it tries to write or remove do those manipulations
+
+and new copy will be created and the modifications will be done on that copy.
+
+At some point later on, those changes will be synched with the original collection.
+
+That's the beauty of it.
+
+Not thread  has to wait for the lock in this case.
+
+So you can ask me if there are 20 threads, then all these 20 threads trying to change this collection
+
+will create a copy.
+
+Yes, you are right.
+
+So that is where we have to take care  these collections are good for use cases where we have a lot of readers
+
+that need to happen in parallel and a few rights.
+
+If you have too many rights, then these are not great that they will degrade the performance because
+
+will have a lot of copies and a lot of synchronization that needs to happen.
+
+And also these concurrent collection classes which allow concurrent access.
+
+That is the reason they are called concurrent collections, because they allow concurrent access for
+
+multiple threats, implement fail safe iterators.
+
+Unlike the traditional collection classes  which  implements fail fast iterators, these guys implement
+
+fail safe iterators, which point to the original collection that was initially created are given always
+
+these iterators will point to this guy.
+
+So even if manipulations happen, they will happen on the copy.
+
+So these iterators will never throw a concurrent modification exception, as you will see in that next
+
+few lectures.
+
+So two things to remember here.
+
+Once we start using concurrent collections, we don't have to worry about locking and all that.
+
+No synchronization will have parallel access to the same collection.
+
+The collection will not be locked for the threads.
+
+And secondly, they implement fail safe iterators who will not have a concurrent modification exception.
+
+And there is one more which is concurrent hash map in our map world here.
+
+Instead of locking the entire map, the locking happens at fine-grained level, at a bucket level or
+
+even at a lower level.
+
+This is called lock stripping, so we don't have to worry about how exactly it internally works.
+
+But instead of locking the entire map that happens in synchronization when we use these hash map, etc.
+
+and we use concurrent Hashmap, the locking happens at a very fine grained level.
+
+You're going to learn more details about each of these.
+
+First, you will create this problem of concurrent modification exception.
+
+You will see what the problem is in the next lecture and then you  will solve the problem using copy on write array list 
+
+and also concurrent hash map, you will also see other methods that are available
+
+on these concurrent collections in lectures later on.

@@ -1,0 +1,21 @@
+
+Last but very important,
+
+Polymorphism. Poly means multi or multiple and morphic means shapes or behavior.
+
+So if an object can take different shapes or behave differently when other objects access it at different
+
+points in time, then that is called Polymorphism. In the world of Java, when you use function overloading
+
+and function overriding later on,you will see polymorphism in action. To leave you with a real life example, me, Bharath as an object,
+
+when I interact with my parents or when I interact with my wife, children and colleagues, I behave differently.
+
+So the same object can output different behavior. When I talk to my parents I have more respect and when
+
+I talk to my wife, love dominates and when I talk to my children, care, more care and when I behave with
+my colleagues,it's much more professional behavior.
+
+So the same object, when its communicating with different other objects, expresses different behavior.
+
+This is nothing but Polymorphism.

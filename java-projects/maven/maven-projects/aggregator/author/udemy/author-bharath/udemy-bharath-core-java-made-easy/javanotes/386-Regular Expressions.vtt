@@ -1,0 +1,101 @@
+In this section, we will learn what regular expressions are and how to use them in Java, regular expressions
+
+allow us to create rejects patterns, which we then use to match a group of strings.
+
+Example, we can validate email addresses, cell phone numbers, etc. using regular expressions as we
+
+build web applications where the users register using their email IDs cell phone numbers, we can check
+
+if the given email ID or a cell number is valid.
+
+Using a regular expression pattern.
+
+They let expressions can be used not only for data validation, we can use them for creating pattern
+
+matching applications, translators, compilers, interpreters internally use regular expressions.
+
+Digital circuits can be built using regular expressions and also the transport layer protocols like
+
+PCP, UDP, etc. use regular expressions internally to do pattern matching.
+
+Using regular expressions in Java is super simple.
+
+We have two important classes from the Jawa X Dot Util Dot Rejects package.
+
+The Pattern Class and the Macha class.
+
+We first create a pattern by using the Pattern Dot Compile method.
+
+This compile method takes a regular expression in the string format.
+
+It compiles that string into a pattern object.
+
+Once we have the pattern, we can get a match up.
+
+This matter takes a string and it checks where this pattern matches within that given string.
+
+So once we get the matter, you invoke matcher dot, find dispatcher dot find.
+
+We'll check if there are ABCs within this given string, because our regular expression pattern here
+
+is ABC.
+
+It will check wherever ABC occurs here and it will.
+
+Return a boolean true, if it does.
+
+If there is no ABC in the given string, then it returns a Boolean file so you can look through and
+
+find multiple ABCs in the given string ABCs right here.
+
+And then there is the ABC here, and also there is the ABC here.
+
+It occurs three times in the string.
+
+So when you invoke fine, as long as that is the ABC within the given string, it will return a boolean.
+
+True.
+
+And there are no more ABCs.
+
+It returns false.
+
+And there are other methods on the matcha match that are not.
+
+Stock will return the stock index when it finds a pattern within the given string.
+
+It will return the starting index of that particular.
+
+Sequence, it has fun.
+
+And also when you invoke Matador and it will return the index of the next character after that sequence,
+
+when it first finds ABC, when you invoke Matador and it will return the index of this D when it finds
+
+ABC the second time when you invoke Matador to start, it will return the index off a venue, invoke
+
+Matador or End.
+
+It will return the index of this deal here, and the Matador Group will turn you the group of characters
+
+that four phone that matches this pattern.
+
+You will learn advanced ways of creating the let expression patterns by using meta characters and also
+
+quantify hours and more.
+
+With valid valid emails, you will validate cellphone number and also you will learn that distinct class
+
+internally has a Matisse method that takes irregular expression.
+
+You don't have to create this pattern and then the macha.
+
+If you need them, you can.
+
+But the String Plus has a Matisse method that picks a regular expression and checks if a given string
+
+is valid or not, or if the given string matches that particular regular expression, which is a very
+
+easy way to validate any string against irregular expression.
+
+All that in the next few lectures.

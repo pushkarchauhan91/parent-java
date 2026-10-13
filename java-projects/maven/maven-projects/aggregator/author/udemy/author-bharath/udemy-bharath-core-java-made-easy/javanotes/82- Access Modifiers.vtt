@@ -1,0 +1,70 @@
+Java supports access permissions at different levels, starting with class and it's members like variables,
+methods and constructors.
+
+There are three key words which we can use, private, protected and public.
+
+These are access modifiers. And if we don't use private or protected or public, by default it will
+
+be package.
+
+There is no keyword for it.
+
+But if we just leave a variable or method without using any of these, it'll be package level access modifier
+
+that will be applied automatically.
+
+We can only apply package and public to a class.
+
+We cannot use private because if you mark a class private it will not be,
+
+no other class in the application will be able to access it and it'll be useless.
+
+Similarly we can't mark it with protected because protected is used during inheritance and we usually
+
+inherit a class' variables, methods, constructors when we inherit a class.
+
+You'll learn more about protected when we work with inheritance.
+
+We cannot apply these access modifiers to blocks because we don't explicitly invoke the blocks. They
+
+are simply executed by the JVM when an object is created or when a class is loaded.
+
+So always remember that access modifiers cant be used against blocks. Before you try out a few programs,
+
+let's take a look at how these access modifiers will impact
+
+the access of variables diagrammatically.
+
+Let's say we have two packages, package a and b. Package a has two classes and package b has two classes
+
+as well.
+
+A, B, C and D. Now class A
+
+has four members.
+
+Each marked with different access modifiers. private int a; will be accessible only within this class
+
+A. It can go beyond that, class B can't access it, class C can't access it, neither can D. int b;
+
+there is no access modifier specified.
+
+So it is by default package level.
+
+And then as the name itself says, it can be accessed by any class within this package.
+
+In this case A can access it and B can access it.
+
+C is marked with protected. So it can be accessed within the package by any class.
+
+And also as I said protected plays a role in inheritance which you will be learning later on. Here
+
+class C inherits from class A, it extends class A.
+
+So class C can access this variable as well because it is marked with protected.
+
+So in addition to package level access, it will also have extended access or inheritance access.
+
+Finally public, as the name itself says it can be accessed anywhere.
+
+So this D can be accessed by A, B, C or D although it belongs to different packages.

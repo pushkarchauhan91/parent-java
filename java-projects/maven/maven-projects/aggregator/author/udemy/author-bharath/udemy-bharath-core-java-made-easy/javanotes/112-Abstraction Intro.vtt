@@ -1,0 +1,43 @@
+Abstract means theoretical, not practical or implemented.
+
+Similarly, in the world of object oriented programming, abstraction hides the details of the underlying
+
+object being used,
+
+how exactly the functionality is being implemented from the object, that is using it.
+
+For example, when a computer wants to when we want to print a document using a computer and a printer,
+
+the computer or the laptop need not know the details of how exactly the printer works.
+
+All it needs to know is which methods on the printer driver should be invoked. Similarly, to watch television,
+
+we need not know how a television works internally. Simply take the remote control, sit on the couch and
+
+keep switching the channels. In the world of Java,
+
+we can implement partial abstraction using abstract classes. If we use abstract classes, we'll implement
+
+some methods and some methods don't have the body at all.
+
+They are all marked as abstract methods. And interfaces, in interfaces
+
+they are completely abstract. Meaning,
+
+none of the methods in interfaces will have a body.
+
+To mark a class, a abstract class we use the abstract modifier.
+
+You can mark both classes and methods as abstract.
+
+Once a class is marked as abstract, you cannot create a instance of that class because it will not
+
+implement all the methods. To summarize,
+
+Abstraction is a process of hiding the internal details of an object or a class so that it's easy for
+
+other objects and classes to use it.
+
+And there are multiple abstractions.
+
+One is partial, using abstract classes and one is complete abstraction, which is using interfaces.

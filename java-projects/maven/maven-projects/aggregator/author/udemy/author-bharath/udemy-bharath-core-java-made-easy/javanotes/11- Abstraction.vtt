@@ -1,0 +1,44 @@
+
+What is Abstraction? Abstraction is the principle of hiding all the unnecessary details of an object and showing only the essential features that the other objects need in order to communicate with that object.
+
+In Java, we achieve abstraction using interfaces. You'll learn more about interfaces in lectures later on.
+
+A simple realistic example of abstraction is you, accessing this particular course.
+
+You don't care how much time I put behind this or all the technologies that I have used and the books
+
+I have read and all my experience that came in to this course. All you look for is how to extract
+
+the best Core Java concepts out of this course.That's nothing but abstraction. All those details are hidden
+from you and you get all the nice concepts out of this course.
+
+Some real time examples for abstraction are television.
+You don't care how the television has been implemented,
+all the chips inside it and all the technology inside it.
+
+All you care about is, hold on to the remote control, sit on your couch and keep changing the channels.
+
+Similarly a car.
+
+Just turn it on and press the gas pedal.
+
+We rarely open up the engine and see how exactly it has been built.
+That's nothing but abstraction.
+
+Laptop,
+
+all we do is use the mouse, use the keyboard.
+
+We rarely open it up and see how the motherboard works or what the processor is doing. We don't care.
+
+We simply use the keyboard, type in or use the mouse pad and get the work done.
+
+Finally a cell phone.
+
+I need not tell you. All we need is a touch screen cellphone like an IPhone or a Samsung and we don't care
+
+about the internals of that particular cellphone because they have abstracted it out for us.
+
+They have given a nice interface which we can use to access all these objects.
+
+We as an object, use that interface and access them.

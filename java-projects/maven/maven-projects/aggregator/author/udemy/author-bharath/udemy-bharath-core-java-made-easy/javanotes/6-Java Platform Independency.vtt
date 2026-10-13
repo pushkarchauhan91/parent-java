@@ -1,0 +1,35 @@
+In this lecture, you will learn why Java is called a platform independent language. In languages like C
+
+
+and C++, when the source code is compiled on a particular operating system like Windows
+
+it generates a machine code that's understood only by that operating system and not by Mac or Linux.
+
+We cannot run a C program compiled on Windows on Mac on Linux.
+
+Similarly if we compile it on a Mac, it will generate something that can be only run on Mac and not on
+Windows and Linux.
+
+
+That's called platform dependency.
+
+But in Java we don't have this dependency because when we compile Java code, the Java compiler generates an
+
+intermediate code called byte code. This is not machine code for a particular operating system.
+
+This byte code can be interpreted by the windows JVM on Windows to the underlying operating system and
+
+we can have a Linux JVM which can interpret it for Linux.
+
+
+So all the power, the platform independency comes from this additional step.
+
+
+The JVM uses the Just In Time compiler to do this translation of byte code into the operating system
+
+understood machine code efficiently.
+
+
+That is why Java is called a platform independent language because once compiled, it can be run on any operating
+
+system by using a JVM.

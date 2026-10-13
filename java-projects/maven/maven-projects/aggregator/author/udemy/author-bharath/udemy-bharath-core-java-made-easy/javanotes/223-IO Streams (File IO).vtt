@@ -1,0 +1,75 @@
+In this lecture, we'll learn about Java IO streams. Stream is a logical handle to a input source from which
+
+we can read data or to a output source to which we can write data.
+
+This could be file system, network, etc.
+
+For example, this very moment while you watch this video, Udemy is using an output stream to send the
+
+data to your Web browser.
+
+On the other hand the browser's video player is using an input stream to read that data.
+
+Another example, when we are copying files from our desktop or laptop to an external hard drive, the operating
+
+system uses a input stream to read those files from the local hard drive and then uses an output
+
+stream to write those files to the external hard drive.
+
+Java supports four types of streams, ByteStreams, CharacterStreams, BufferStreams and ObjectStreams.
+
+ByteStreams, as the name itself says read and write one byte at a time.
+
+CharacterStreams on the other hand use unicode.
+
+So they read a character, 1 character or write one character at a time. Character is represented using
+
+unicode in Java.
+
+So it's two bytes. We can read and write any character in any language since we use unicode. We should
+
+be using ByteStreams to read and write binary data
+
+and we should be using CharacterStreams if we are dealing with textual information. BufferedStreams
+
+are really wrappers for ByteStreams and CharacterStreams. They allow us to read more data at
+
+a time. So they use ByteStreams and CharacterStreams or they decorate or wrap these two streams allowing us
+
+to read more data,
+
+a lion, a string at a time instead of reading one byte or one character. The ObjectStreams,
+
+they allow us to read and write objects to a file system or to a network.
+
+This process is called serialization.
+
+You'll learn more about BufferedStreams and ObjectStreams in lectures later on.
+
+All these streams fall under java.io package. All the classes for these streams are in this
+
+package. The important classes are InputStream, OutputStream which are ByteStreams. They're abstract classes.
+
+FileInputStream and FileOutputStream
+
+are the classes that you use. These extend these InputStream and OutputStream. Similarly Reader and Writer are abstract
+
+classes for CharacterStreams. FileReader and FileWriter are the classes that we'll be using. And an
+
+other important class which is not a stream, a File.
+
+It acts as a handle to the underlying file or folder on our machine.
+
+All these classes, when you use them the methods in these classes throw some checked exceptions like
+
+FileNotFoundException, IOException, etc which we either need to handle or declare using the throws class.
+
+So in this lecture, you have learnt what streams are. They are logical handles to a input source or output
+
+source.
+
+In Java there are four types of streams, ByteStreams to read binary information, CharacterStreams to
+
+read and write textual information, BufferedStreams are wrappers over these two streams to read more data
+
+at a time, ObjectStreams are used to read and write objects.

@@ -1,0 +1,29 @@
+Conversion of data from one type to another type is called type casting.
+
+Java supports primitive as well as object or reference casting. Casting can be implicit or explicit. Implicit
+
+meaning it happens automatically.
+
+We need not do any work. For explicit, as a developer we need to do some work. Implicit happens when we
+
+assign a lower data type to a higher data type in our program.
+
+For example, byte to a integer
+
+or if we assign a integer value to a long value, then the implicit type casting happens. Explicit is when we
+
+assign a higher data type to a lower data type. For example, if we assign an integer type to a byte type
+
+or a long type to a integer type, then we have to explicitly typecast it.
+
+To understand reference casting,
+
+you need to understand inheritance which you will learn in sections later on. Again even in object casting,
+
+we'll have implicit and explicit. Implicit is when we try to assign a child class object to a parent class
+
+object. And explicit is when we try to assign a parent class object to a
+
+child class object. We'll learn these in detail when you work on inheritance later on and you will see these,
+
+the primitive type typecasting in action in the next few lectures.

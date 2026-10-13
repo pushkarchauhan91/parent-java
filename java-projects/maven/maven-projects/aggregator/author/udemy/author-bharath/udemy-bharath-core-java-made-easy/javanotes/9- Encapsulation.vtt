@@ -1,0 +1,21 @@
+
+What is Encapsulation?
+
+Encapsulation is about protecting the properties and the functionality of an object from other objects.
+
+The easiest way to remember that is by having a capsule diagram just like an antibiotic medicine or capsule
+that we get from a pharmacy when we are sick. Here is a capsule. That has all the properties and data
+
+of a particular object. Then we have all the methods that can access the data of that particular object.
+
+In most of the object oriented languages,this capsule is called a class, the data,
+
+we call it properties and variables and then functionality or the methods can access that data.
+
+So if other objects want to access this data, if we follow proper encapsulation, then they
+
+always have to go through these methods and functionality to access the data in that object.
+
+Another definition for encapsulation is writing the data and code into one single unit.
+
+In Java we use a class to achieve encapsulation.

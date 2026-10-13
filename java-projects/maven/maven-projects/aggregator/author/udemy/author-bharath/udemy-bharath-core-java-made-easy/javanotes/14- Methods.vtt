@@ -1,0 +1,44 @@
+You know already learned about the two building blocks that are classes and variables. In this lecture you'll
+
+learn about methods. A method is a set of programming instructions that takes some input and produce
+an output.
+
+The syntax of a method is the return type, followed by the identity or the name of the method, followed
+
+by the argument list and then the body of the method itself where we will be writing a lot of code to
+
+do some work.
+
+This argument list is the input and this return type specifies the type of output
+
+this method is going to produce. An example,
+
+is a simple add method which takes two numbers as the input or arguments and it produces an output
+
+which is the sum of a and b.
+
+So here, this is the return type.
+
+In any programming language, the communication happens between methods. That is, methods call each other
+
+to do some work.
+
+For example, if you are working on a online shopping application and when the customer places the order,
+
+the placeOrder method will be invoked which inturn can call the chargeCard and shipOrder
+
+methods.
+
+So these methods in an object oriented programming world can be across different classes and objects.
+
+There can be only four types of methods.
+
+They are methods that don't have any arguments, neither do they return anything.
+
+They simply do some work. Methods that don't have any input but do produce some output,
+
+methods that do have input or arguments and also give back some output and finally methods that take inputs
+
+but they don't return back any output.
+
+The combination of argument list and the return type gives us four different types of methods.

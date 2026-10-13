@@ -1,0 +1,17 @@
+If you are a fan of functional programming then you're going to be a fan of Java 8. After Java 5, Java
+
+8 is a major release with several cool features that introduce the benefits of functional programming
+
+into Java.
+
+They are lambda expressions using which we can write a few lines of code and do a lot of work. Functional
+
+interfaces wherein you are going to use these functional interfaces to express lambda expressions or to
+
+create lambda expressions.
+
+Default methods in interfaces, that's a new concept, predicates which will evaluate a given expression
+
+and return a boolean result, Functions and stream API.
+
+In this section you are going to master all these in easy steps.

@@ -1,0 +1,65 @@
+Internationalization is also known as I18N
+
+because there are 18 letters or alphabets between I and N. It is a process of supporting multiple
+
+languages and formats that are local to a particular location.
+
+For example, if our application is being accessed from US, UK, India and France then we need to make sure that
+
+it supports English, Hindi as well as French.
+
+Not only the language we also need to consider the date and number formats because they are different
+
+in different countries.
+
+For example, in USA the date starts with month then the day and then the year. Whereas in India the days
+
+come first then the month then the years.
+
+So we can't rewrite our entire application for each and every country but will be internationalizing it using
+
+key classes such as Locale, NumberFormat and DateFormat.
+
+These are in-built classes in Java.
+
+We will be learning more about them and using them in the next few lectures.
+
+I also want you to remember that although this is a Core Java course, when you learn advanced Java courses
+
+and develop enterprise applications, most of the frameworks like Spring MVC or Java Server Faces, the UI
+
+technologies, the web technologies, they will have in-built support to accept resource bundles we
+
+provide. We as developers will provide resource bundles per locale. Locale is a combination of
+
+a country and a language or location and language. You will learn more about Locale in the next few
+
+lectures.
+
+But always remember that there will be inbuilt support. We'll not be doing a lot in our code but we
+
+simply provide resource bundles and frameworks like Spring, JSF.
+
+They will look at the Locale that the browser sends. Depending on where the user is accessing the application
+
+from, if it is accessing from USA then the browser will be US_EN, the Locale will be US_EN.
+
+If he's accessing from India or France the Locale will be different. Depending on the Locale,
+
+these frameworks will use the resource bundles which are nothing but text files.
+
+If it is French, you will have a resource bundle for French. For English we'll have a resource bundle. Similarly
+
+for Hindi,
+
+we can have a resource bundle. And depending on the Locale, our application will respond using those
+
+resource bundles for the HTML labels, etc;
+
+So the end client will always see something local to him.
+
+We internationalize our application using these concepts.
+
+But the key concepts are, Locale, NumberFormat class and DateFormat class which we'll be exploring
+
+in the next few lectures.

@@ -1,0 +1,52 @@
+
+When we start working on our Java applications the very first thing we do is to install JDK. JDK stands
+
+for Java Development Kit.
+
+It is a software that comes with a Java compiler and a JRE.
+
+JRE stands for Java Runtime Environment. The JRE inturn has a JVM and it comes with a set of API or
+
+libraries that are ready to use. The JVM uses Just In Time compiler to do its work efficiently.
+We'll learn more about JVM and JIT in the next lecture as well.
+
+
+The Java compiler that comes with the JDK converts the source code we write into byte code.
+
+
+If you have worked with C or C++ you know that a compiler converts the source code into the machine
+
+
+understandable code or machine code that can be directly understood with the underlying operating system.
+In case of Windows its a exe and in case of Mac it's a dmg.
+
+
+But in case of Java,the compiler converts the source code into an intermediate code called byte code.
+
+
+You will learn the advantage of this intermediate step in the next lecture.
+
+For a program to run, it needs an entertainment. JRE which stands for Java Runtime Environment provides
+
+that environment for a Java compiled code or byte code to run. In C and C++,
+
+it was the underlying operating system. The runtime environment was provided by the underlying operating
+
+system and the machine code was directly running against the operating system. In case of Java its a JRE
+
+which is like a virtual or duplicate operating system which in turn interprets the byte code for the
+underlying operating system.
+
+There is an advantage of this additional step which you will see in the next lecture.
+The API stands for Application Programming Interface.
+
+It provides many predefined functions that are ready to use without knowing much background details.
+
+For example, if you want to read and write files, if you want to create new files are read from existing
+
+files on the operating system,
+
+you can use the Java IO library. Simply we as programmers will learn the API and then start writing programs
+right away.
+
+We need not write a lot of low level code to get our work done.

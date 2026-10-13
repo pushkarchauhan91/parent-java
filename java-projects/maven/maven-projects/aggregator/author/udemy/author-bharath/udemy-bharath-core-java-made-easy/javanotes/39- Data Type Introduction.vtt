@@ -1,0 +1,84 @@
+When we declare a variable it is mandatory to tell its data type. The data type tells us what type of
+
+data this particular variable can carry.
+
+For example, int a; tells that a can hold onto integer type data. In this lecture you'll learn
+
+about several other data types that are available in Java.
+
+There are two main types, primitive types and reference types. Under primitive types,
+
+we have byte, short, int, long and char which are integral type values, which can hold on to integer type
+
+data.
+
+char can represent single character. Although it under the integral types,
+
+it represents one character in any language. Then float and double can carry decimal point values.
+
+While integers carry integer type values, negative and positive, floats can carry decimal type values.
+
+Double is double of float.
+
+And finally boolean can carry
+
+true or false, just two values. Under reference types,
+
+we have classes, arrays, strings, etc; which you will see later on.
+
+The reason we have so many primitive types is they carry different ranges of data. Within integers we have byte,
+
+short, int and long.
+
+So each of these carry different values or different ranges of values. Starting with byte, as the name
+
+itself says takes one byte of memory.
+
+So the range will be -128 to 127.
+
+These are the values
+
+it can carry in this range. To represent it diagrammatically, a byte comprises of 8 bits.
+
+If we fill it all with zeros it would be a zero.
+
+If we fill it all with 1s it will be max of 256 because it is 2^8.
+
+But since we have to represent both negative and positive numbers, that range becomes -128 to 127. It is
+
+-2^7 to 2^7-1.
+
+Similarly a short takes two bytes.
+
+So the range will be -32768 to +32767 which is nothing but -2^15 to 2^15-1.
+
+Similarly for the other types, integer takes 4 bytes, -2^31 to 2^31-1.
+
+Now you got the idea, long is similar as well.
+
+So depending on the type of data you are using or your program will use, you need to use that particular
+
+available data types.
+
+Char takes two bytes, it represents a character.
+
+This is the integer range for it.
+
+More on this in the next lecture.
+
+I will talk more about unicode, character set, etc; in the next lecture.
+
+Float takes 4 bytes
+
+and this is the value that it can carry.
+
+It's an exponential value.
+
+Double is double of float.
+
+So it also carries decimal point values but it can, it uses 8 bytes. So it can carry bigger floating point
+values.
+
+And finally boolean, it just holds true and false,
+
+nothing else.

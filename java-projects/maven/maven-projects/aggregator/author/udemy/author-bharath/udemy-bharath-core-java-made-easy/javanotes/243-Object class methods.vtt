@@ -1,0 +1,11 @@
+Every Java class implicitly extends the Object class and it inherits various methods which you have
+
+already used such as finalize in garbage collection, wait, notify and notifyAll in multi-threading.
+
+In this section, you will learn three important methods which are toString, which converts an object
+
+to string, hashCode which is very important when you use hashmap, hashset and other collections.
+
+And finally the equals method with checks if given two objects are equal. You are going to learn how
+
+to override these methods in your class.

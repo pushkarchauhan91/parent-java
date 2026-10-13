@@ -1,0 +1,59 @@
+Inheritance is the process of defining a new object with the help of an existing object. In Java
+we use the keyword extends to inherit.
+
+Let's take a look at two important things in inheritance with an example.
+
+Now that we have IPhone 6s in the market, pretty soon the proposed next IPhone is IPhone 7 which can definitely
+
+extend from IPhone 6s and it can use a lot of features from 6s.
+
+So the two important things in inheritance are accessing the existing object's functionality.
+
+So IPhone 7 can use a lot of behavior in IPhone 6s, the way we take the pictures,
+
+the way we record the videos,the way we access our email and a lot of other features can still remainthe same in
+
+IPhone 7. At the same time it can update the existing functionality in 6s.
+
+The camera could be better,
+
+IPhone 7 could be better performing, etc. And two other terms that we usually hear when we talk
+
+about inheritance are Reusability and IS-A-relationship.
+
+Let's take another example. When we have BMW and Audi which are ofcourse both cars.
+
+They have something in common which every car has.
+
+So these two can reuse something from the car object.
+
+Similarly we have Volvo and Benz which are bus companies and they both have some common behavior which
+can go into a bus and they can inherit from the bus object.
+
+Now does car and bus have something in common?
+Ofcourse.
+
+So we can push that common functionality into an object called vehicle.
+
+This way we're going to reuse all the common functionality from the vehicle.
+
+The common functionality will go into the car and the bus and from the car, the common functionality
+
+can go into BMW and Audi. Similarly from the bus,
+
+the common functionality can go into Volvo and Benz.
+
+All these companies can implement different things in their own fashion. So they first try to use whatever
+
+comes from the bus and then they implement their own things.
+
+That is reusability.
+
+Finally, the IS-A is just a term used to refer to inheritance.
+
+So in this case, a car is a vehicle, a bus is also a vehicle and then a BMW is a car.
+
+You can't say an Audi
+is a bus.
+
+So is-a is just a terminology that we usually use to refer to inheritance.

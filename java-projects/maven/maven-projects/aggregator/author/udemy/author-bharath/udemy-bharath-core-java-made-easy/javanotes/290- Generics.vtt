@@ -1,0 +1,103 @@
+You have been using Generics to specify the type of a particular collection. In this and the next few lectures,
+
+you'll learn more details about generics.
+
+They were introduced in Java version 1.5 mainly for two reasons, to provide type safety and to avoid type casting
+
+issues while using collections.
+
+Let's work on a handson example to see these two in action. Go to Eclipse,
+
+create a new Java project, call it Genetics, Finish. Create a new class,
+
+name it TypeCastingProblem with a main method.
+
+First let's create an array of strings.
+
+String
+
+array s is equal to, new String, within brackets, array of size 10.
+
+s dot or s[0]
+
+is equal to, within double quotes, John.
+
+No issues. s[1] is equal to, one more string Rob.
+
+Still no issues because it is also of string type.
+
+Now s[2] = 123; a number. And immediately we see a compile time error. Type mismatch:
+
+cannot convert from int to String. So arrays are strict when it comes to type and we cannot add any other
+
+type of data into the array.
+
+Whereas in collections,
+
+let's define a list. List l is equal
+
+to, new ArrayList, control+space.
+
+Without any generic types, import list. So this is possible, prior to Java 1.5
+
+we never specified the type on a list or any other collection.
+
+So I can add list.and("John");
+
+list.add("Rob"); as well as list.add(123);
+
+Save it.
+
+Format, no compilation issues. But at run time
+
+if I try to typecast it, String name is equal to, within brackets typecast it, (String) l.get(0).
+
+The element at index 0, should give me John. String name1 is equal to,
+
+type cast to string l.get(1). Finally, String
+
+name2 is equal to, you have to type cast it again,
+
+l.get(2). 
+
+Format, run the program.
+
+And we see a ClassCastException because we are assuming that this is a list of names and it will
+
+have all strings and we are type casting it back to string.
+
+But all of a sudden we get an integer and it can't typecast it to String. That is the reason we are seeing
+
+a ClassCastException. Prior to Java 1.5
+
+this was a issue at runtime and that is the reason Generics were introduced. Using Generics,
+
+we can mention the type, when we declare a particular list. List of
+
+Strings, and on the right hand side, angular brackets.
+
+You can also specify the type here in angular brackets, but starting Java version 1.8 that is optional.
+
+Now we see a compilation error right away.
+
+The method add in the type List<String> is not applicable for the argument (int).
+
+So you cannot add it. So it provides type safety and no more type casting problems.
+
+And another thing to remember is this polymorphism here, can be applied only to the base type and not
+
+to the parameter. Meaning,
+
+here I am able to assign an ArrayList to the List because List is the interface ArrayList implements.
+
+But we cannot say List<Object> is equal to ArrayList<Strings>.
+
+That's not possible.
+
+We will immediately see a compilation error. And also we cannot use primitive types inside the Generics.
+
+We should always use object types or wrapper types. Change it back to String.
+
+So in this lecture, you have learnt that Generics were introduced in Java version 1.5 mainly for type safety
+
+and to avoid type casting issues while using collection API.

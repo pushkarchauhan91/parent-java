@@ -31,6 +31,7 @@
         <module>udemy-bharath-spring-data-jpa-using-hibernate</module>
         <module>udemy-bharath-spring-framework-in-easy-steps</module>
         <module>udemy-bharath-spring-security-fundamentals</module>
+        <module>udemy-bharath-java-design-patterns/udemy-bharath-java-design-pattern-bridge</module>
     </modules>
 
 </project>

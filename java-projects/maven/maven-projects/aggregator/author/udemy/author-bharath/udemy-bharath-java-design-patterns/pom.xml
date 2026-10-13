@@ -12,7 +12,19 @@
     <artifactId>udemy-bharath-java-design-patterns</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>udemy-bharath-design-pattern-singleton</module>
+        <module>udemy-bharath-java-design-pattern-abstract-factory</module>
+        <module>udemy-bharath-java-design-pattern-adapter</module>
+        <module>udemy-bharath-java-design-pattern-bridge</module>
+        <module>udemy-bharath-java-design-pattern-builder</module>
+        <module>udemy-bharath-java-design-pattern-command</module>
+        <module>udemy-bharath-java-design-pattern-decorator</module>
+        <module>udemy-bharath-java-design-pattern-facade</module>
+        <module>udemy-bharath-java-design-pattern-factory</module>
+        <module>udemy-bharath-java-design-pattern-flyweight</module>
+        <module>udemy-bharath-java-design-pattern-prototype</module>
+        <module>udemy-bharath-java-design-pattern-proxy</module>
+        <module>udemy-bharath-java-design-pattern-singleton</module>
+        <module>udemy-bharath-java-design-pattern-template-method</module>
     </modules>
 
 </project>

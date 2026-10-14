@@ -1,0 +1,5 @@
+4 spring boot features
+Auto Configuration
+Starters like starter data jpa, starter web etc.
+Embedded Servlet Container: Tomcat, Jetty, Undertow
+Actuator

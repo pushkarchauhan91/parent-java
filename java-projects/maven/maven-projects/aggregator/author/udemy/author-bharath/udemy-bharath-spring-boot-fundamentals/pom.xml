@@ -10,5 +10,10 @@
     </parent>
 
     <artifactId>udemy-bharath-spring-boot-fundamentals</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>udemy-bharath-spring-boot-001-hello</module>
+        <module>udemy-bharath-spring-boot-002-spring-core</module>
+    </modules>
 
 </project>

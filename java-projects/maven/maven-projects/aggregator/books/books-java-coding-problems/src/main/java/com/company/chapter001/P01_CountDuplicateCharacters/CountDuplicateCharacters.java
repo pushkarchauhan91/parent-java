@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class CountingDuplicateCharactersTester {
+public class CountDuplicateCharacters {
 
     public Map<Character, Integer> countDuplicateCharacters(String str) {
         Map<Character, Integer> cache = new HashMap<>();

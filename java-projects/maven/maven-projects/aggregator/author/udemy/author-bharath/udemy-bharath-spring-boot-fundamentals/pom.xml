@@ -15,6 +15,7 @@
         <module>udemy-bharath-spring-boot-001-hello</module>
         <module>udemy-bharath-spring-boot-002-spring-core</module>
         <module>udemy-bharath-spring-boot-003-spring-data-jpa</module>
+        <module>udemy-bharath-spring-boot-004-product-rest-api</module>
     </modules>
 
 </project>

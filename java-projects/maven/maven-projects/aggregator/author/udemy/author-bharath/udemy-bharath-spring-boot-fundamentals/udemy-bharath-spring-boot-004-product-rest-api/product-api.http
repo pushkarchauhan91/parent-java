@@ -1,0 +1,121 @@
+# Product REST API — IntelliJ HTTP Client
+# Start the app, then click ▶ next to a request (or "Run All Requests" at the top).
+# Run top to bottom: "Create product" saves the new id into {{productId}} for the later requests.
+# MySQL: the product.id column must be AUTO_INCREMENT, otherwise "Create product" fails with
+#   "Field 'id' doesn't have a default value"  ->  ALTER TABLE product MODIFY id INT NOT NULL AUTO_INCREMENT;
+
+@baseUrl = http://localhost:9191/productapi
+
+### Create product
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "description": "Dell XPS 13",
+  "price": 75000
+}
+
+> {%
+    client.test("Product created", () => {
+        client.assert(response.status === 201, "Expected 201 but got " + response.status
+            + " (check that product.id is AUTO_INCREMENT in MySQL)");
+        client.assert(response.body.id > 0, "Expected a generated id");
+    });
+    if (response.status === 201) {
+        client.global.set("productId", response.body.id);
+    } else {
+        // don't let later requests run against a stale id from a previous run
+        client.global.clear("productId");
+    }
+%}
+
+### Get all products
+GET {{baseUrl}}/products/
+
+> {%
+    client.test("List returned", () => {
+        client.assert(response.status === 200, "Expected 200 but got " + response.status);
+        client.assert(Array.isArray(response.body), "Expected a JSON array");
+    });
+%}
+
+### Get product by id (first call hits the DB, repeat it to be served from the Hazelcast cache)
+GET {{baseUrl}}/products/{{productId}}
+
+> {%
+    client.test("Product found", () => {
+        client.assert(response.status === 200, "Expected 200 but got " + response.status);
+        client.assert(response.body.name === "Laptop", "Unexpected name: " + response.body.name);
+    });
+%}
+
+### Update product (also evicts it from the cache)
+PUT {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+  "id": {{productId}},
+  "name": "Laptop",
+  "description": "Dell XPS 13 (2026)",
+  "price": 72000
+}
+
+> {%
+    client.test("Product updated", () => {
+        client.assert(response.status === 200, "Expected 200 but got " + response.status);
+        client.assert(response.body.price === 72000, "Price not updated");
+    });
+%}
+
+### Get product by id again (should show the updated price, not the cached one)
+GET {{baseUrl}}/products/{{productId}}
+
+> {%
+    client.test("Updated values returned", () => {
+        client.assert(response.status === 200, "Expected 200 but got " + response.status);
+        client.assert(response.body.price === 72000, "Stale cache? price = " + response.body.price);
+    });
+%}
+
+### Delete product
+DELETE {{baseUrl}}/products/{{productId}}
+
+> {%
+    client.test("Product deleted", () => {
+        client.assert(response.status === 200, "Expected 200 but got " + response.status);
+    });
+%}
+
+### Get deleted product (expect 404)
+GET {{baseUrl}}/products/{{productId}}
+
+> {%
+    client.test("Deleted product not found", () => {
+        client.assert(response.status === 404, "Expected 404 but got " + response.status);
+    });
+%}
+
+### Get non-existent product (expect 404)
+GET {{baseUrl}}/products/999999
+
+> {%
+    client.test("Unknown id returns 404", () => {
+        client.assert(response.status === 404, "Expected 404 but got " + response.status);
+    });
+%}
+
+### Actuator health (includes CustomHealthIndicator)
+GET {{baseUrl}}/actuator/health
+
+> {%
+    client.test("App is UP", () => {
+        client.assert(response.body.status === "UP", "Health: " + response.body.status);
+    });
+%}
+
+### OpenAPI spec (JSON)
+GET {{baseUrl}}/v3/api-docs
+
+### Swagger UI — open in a browser: http://localhost:9191/productapi/swaggerui
+GET {{baseUrl}}/swaggerui

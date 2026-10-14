@@ -14,6 +14,8 @@
     <modules>
         <module>udemy-bharath-mcp-client</module>
         <module>udemy-bharath-mcp-server</module>
+        <module>udemy-bharath-ollama-demo</module>
+        <module>udemy-bharath-openai-demo</module>
     </modules>
 
 </project>

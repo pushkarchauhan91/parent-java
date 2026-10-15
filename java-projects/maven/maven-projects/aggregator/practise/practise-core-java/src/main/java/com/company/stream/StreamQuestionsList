@@ -1,0 +1,43 @@
+Given list of Integers, remove duplicates and sort them in descending order.
+
+Given list of Integers, find all odd numbers and return their squares.
+
+Given list of Integers, find second and third element and return as list.
+
+Given list of Integers, find second highest number in a list.
+
+Given list of Integers, divide numbers into odd and even list.
+
+Given list of Strings, find the longest string in a list.
+
+Given list of Employees, find first employees with salary greater than 50000.
+
+Given list of Employees, find top 2 highest earners.
+
+Given list of Employees, sort employees by salary and then by name.
+
+Given list of Integers, find frequency of each element in a list.
+
+Given list of Employees, find employees in each department.
+
+Given list of Employees, find total transaction amount per category.
+
+Given list of Employees, find average salary of employees in each department.
+
+Given list of Employees, find highest paid employee in each department.
+
+Given list of Employees, convert list into comma separated emp name list.
+
+Given 2 list, find common elements between them.
+
+Given you have a list of lists, convert into a single list with all elements, remove duplicates.
+
+Given list of Employees, print all employee names, order is not important but operation should be very fast.
+
+Find error in code:
+List<Integer> list = new ArrayList<>();
+IntStream.range(1,1000)
+        .parallel()
+        .forEach(n -> list.add(n));
+
+Given list of Employees, find total combined salary of all employees, operation should be very fast.

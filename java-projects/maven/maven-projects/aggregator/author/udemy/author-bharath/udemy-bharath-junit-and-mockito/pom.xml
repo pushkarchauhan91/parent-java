@@ -10,5 +10,9 @@
     </parent>
 
     <artifactId>udemy-bharath-junit-and-mockito</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>udemy-bharath-junit-001-hello</module>
+    </modules>
 
 </project>
